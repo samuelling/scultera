@@ -53,6 +53,10 @@ a{color:var(--accent)}
 .brushes{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 16px}
 .brushes span{font:500 11px/1 "JetBrains Mono",monospace;padding:6px 9px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
 .note{font-size:14px;border-left:3px solid var(--accent);padding:6px 0 6px 14px;color:#4b4339;margin:16px 0}
+.prompt{margin:22px 0 10px;background:#25211c;color:#efe6d8;border-radius:14px 14px 14px 4px;padding:12px 16px 13px}
+.prompt span{display:block;font:500 10.5px/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:#d99a52;margin-bottom:7px}
+.prompt q{font:400 15px/1.5 "Instrument Sans",sans-serif;quotes:none}
+.out{font-size:14px;color:#4b4339;margin:0 0 6px}
 figure{margin:18px 0}
 figure img{width:100%;display:block;border-radius:10px;border:1px solid var(--line)}
 figcaption{font-size:12.5px;color:var(--muted);margin-top:8px}
@@ -104,11 +108,26 @@ footer{margin-top:10vh;font-size:13px;color:var(--muted)}
    <p>Spin the model on the left. As you scroll, it swaps to the matching stage of the sculpt and the camera moves to whatever that step changed.</p>
   </div>
 
+  <section class="step" data-stage="final" data-view="hero" data-label="Prompts">
+   <div class="n">00 / how it started</div>
+   <h3>Five prompts, in order</h3>
+   <p>The whole project came out of one short chat. These are the prompts exactly as typed, each followed by what came back.</p>
+   <div class="prompt"><span>Prompt 1</span><q>draw me a sketch of a very sad reptile, in a cgi cartoon style</q></div>
+   <figure><img src="img/sketch.svg" alt="Cartoon of a sad green gecko on a rock under a small rain cloud"><figcaption>A vector cartoon drawn right in the chat: a green gecko on a rock under its own rain cloud, with tilted brows, glossy eyes and a tear.</figcaption></figure>
+   <div class="prompt"><span>Prompt 2</span><q>ok make it more photorealistic, and drop the clouds and the rock it's on. just the sad gecko</q></div>
+   <figure><img src="img/painted.jpg" alt="Painted 2D leopard gecko lying with its chin on the floor, eyelid half closed, one tear"><figcaption>A painting drawn with code on an HTML canvas: a leopard gecko, chin on the floor, upper lid half closed over a slit pupil, one tear. Gradients, spots and thousands of small bumps, but no photo and no image generator, so it reads more like a field-guide plate than a photograph.</figcaption></figure>
+   <div class="prompt"><span>Prompt 3</span><q>ok, now using blender, use sculpt brushes to make a 3d model version of this</q></div>
+   <figure><img src="renders/hero.jpg" alt="Cycles render of the sculpted sad leopard gecko"><figcaption>The sculpt, rendered in Blender's Cycles renderer. Blender's real brushes need a live viewport, so the brush strokes were rewritten as code (steps 02–10 below).</figcaption></figure>
+   <div class="prompt"><span>Prompt 4</span><q>now make a repo 'scultera' where you show the 3d model, and can zoom and spin around it, and describe/show the sculpting steps, and the process</q></div>
+   <p class="out">This page: the model you can spin on the left, and the steps below.</p>
+   <div class="prompt"><span>Prompt 5</span><q>Include the original images in the early part of this chat, what the prompts were, that led to this</q></div>
+   <p class="out">This section.</p>
+  </section>
+
   <section class="step" data-stage="final" data-view="hero" data-label="The brief">
    <div class="n">01 / brief</div>
    <h3>Start from the feeling</h3>
-   <p>The first sketch was a cartoon. Sadness in a cartoon comes from a few signals: brows tilted up in the middle, oversized wet eyes, a drooping head and a limp tail. Moving to realism meant keeping the signals and dropping the cartoon exaggeration.</p>
-   <figure><img src="img/sketch.svg" alt="The original cartoon sketch of a sad green gecko under a rain cloud"><figcaption>The original sketch. The rain cloud and rock were cut; the sadness signals were kept.</figcaption></figure>
+   <p>The first sketch was a cartoon (prompt 1 above). Sadness in a cartoon comes from a few signals: brows tilted up in the middle, oversized wet eyes, a drooping head and a limp tail. Moving to realism meant keeping the signals and dropping the cartoon exaggeration.</p>
    <p>Four signals made it into the sculpt: heavy upper lids that cover more at the back of the eye, a head resting on the floor, a mouth line that dips at the corner, and one tear.</p>
   </section>
 
