@@ -1,0 +1,314 @@
+{
+ "entries": [
+  {
+   "phase": "measure",
+   "tool": "Track",
+   "target": "358 video frames",
+   "note": "MediaPipe finds 478 points and 52 expression scores on every frame of the 12-second clip",
+   "params": {
+    "tracked": "358/358",
+    "fps": 30
+   },
+   "t": 0.0
+  },
+  {
+   "phase": "measure",
+   "tool": "Solve pose",
+   "target": "head per frame",
+   "note": "each frame's head rotation and position solved from its 2D points (perspective, 63\u00b0 lens)",
+   "params": {
+    "mean_error_px": 4.7,
+    "turn_deg": "-12 to 8"
+   },
+   "t": 1.6
+  },
+  {
+   "phase": "measure",
+   "tool": "Average",
+   "target": "resting face",
+   "note": "frames are averaged point by point, each region weighted toward the frames where it is calm",
+   "params": {
+    "frames": 358
+   },
+   "t": 3.2
+  },
+  {
+   "phase": "measure",
+   "tool": "Test",
+   "target": "depth",
+   "note": "which depth scale do the head turns agree with? x1.03 fits best, so the averaged depth stands",
+   "params": {
+    "best_scale": 1.03
+   },
+   "t": 3.6
+  },
+  {
+   "phase": "measure",
+   "tool": "Symmetrize",
+   "target": "midline",
+   "note": "symmetry plane found (3.4\u00b0 off); 25% of his own asymmetry kept",
+   "params": {
+    "kept": "25%"
+   },
+   "t": 4.0
+  },
+  {
+   "phase": "measure",
+   "tool": "Set",
+   "target": "rest pose",
+   "note": "eyes at his median opening (6.4 mm), lips closed",
+   "params": {
+    "eye_mm": 6.4
+   },
+   "t": 4.4
+  },
+  {
+   "phase": "measure",
+   "tool": "Subdivide",
+   "target": "face surface",
+   "note": "the 898-triangle landmark mesh, Loop-subdivided three times; eyes and mouth left open",
+   "params": {
+    "verts": 29073
+   },
+   "t": 4.8
+  },
+  {
+   "phase": "blockout",
+   "tool": "Fit",
+   "target": "skull",
+   "note": "an ellipsoid fitted to his outline in 30 frames (sides, crown); 31 px error before, 12 after",
+   "params": {
+    "width_cm": 16.5,
+    "length_cm": 18.0
+   },
+   "t": 6.4
+  },
+  {
+   "phase": "blockout",
+   "tool": "Project",
+   "target": "face",
+   "note": "the measured face laid onto the skull along rays from the head centre",
+   "params": {
+    "rays": "0.2\u00b0 grid"
+   },
+   "t": 8.0
+  },
+  {
+   "phase": "blockout",
+   "tool": "Conform",
+   "target": "face edge",
+   "note": "the skull is nudged to meet the face edge, so there is no seam or step",
+   "params": {
+    "blend_deg": 16
+   },
+   "t": 8.8
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "jaw + neck",
+   "note": "under-jaw mass and a thick neck, smooth-unioned",
+   "params": {
+    "neck_cm": 14
+   },
+   "t": 9.6
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "shoulders",
+   "note": "bust block with trapezius slopes, cut flat",
+   "params": {
+    "width_cm": 35
+   },
+   "t": 10.4
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "ears",
+   "note": "helix rim and concha bowl, flared 24\u00b0, checked against his outline in the frames",
+   "params": {
+    "flare_deg": 24
+   },
+   "t": 11.2
+  },
+  {
+   "phase": "detail",
+   "tool": "Carve",
+   "target": "nostrils",
+   "note": "drilled where the tracked nostril points sit, angled down and forward",
+   "params": {
+    "depth_mm": 7
+   },
+   "t": 12.8
+  },
+  {
+   "phase": "detail",
+   "tool": "Clay",
+   "target": "upper lids",
+   "note": "lid margins thickened along the tracked eyelid rims",
+   "params": {
+    "radius_mm": 0.9
+   },
+   "t": 14.4
+  },
+  {
+   "phase": "detail",
+   "tool": "Clay",
+   "target": "brows",
+   "note": "a low brow ridge under the tracked brow points",
+   "params": {
+    "radius_mm": 2
+   },
+   "t": 16.0
+  },
+  {
+   "phase": "detail",
+   "tool": "Pinch",
+   "target": "lip border",
+   "note": "crisp vermilion edge traced along the 20-point outer lip line",
+   "params": {
+    "radius_mm": 0.6
+   },
+   "t": 17.6
+  },
+  {
+   "phase": "finish",
+   "tool": "Carve",
+   "target": "mouth",
+   "note": "slit along the inner-lip line, opened 13 mm deep so the jaw can drop",
+   "params": {
+    "depth_mm": 13
+   },
+   "t": 19.2
+  },
+  {
+   "phase": "finish",
+   "tool": "Insert",
+   "target": "eyeballs",
+   "note": "2.4 cm spheres set behind each 16-point eyelid rim, irises incised",
+   "params": {
+    "radius_mm": 12
+   },
+   "t": 19.73
+  },
+  {
+   "phase": "finish",
+   "tool": "Insert",
+   "target": "teeth",
+   "note": "two arches; the lower one rides the chin",
+   "params": {
+    "teeth": 24
+   },
+   "t": 20.27
+  },
+  {
+   "phase": "finish",
+   "tool": "Mask",
+   "target": "hairline",
+   "note": "hairline curve checked against hair/skin votes from 90 frames",
+   "params": {
+    "agree": "91%"
+   },
+   "t": 20.8
+  },
+  {
+   "phase": "finish",
+   "tool": "Stipple",
+   "target": "buzz cut",
+   "note": "hair cap raised 2.2 mm with a fine stipple",
+   "params": {
+    "raise_mm": 2.2
+   },
+   "t": 21.6
+  },
+  {
+   "phase": "finish",
+   "tool": "Draw",
+   "target": "T-shirt",
+   "note": "crew-neck collar band and a 3 mm fabric layer",
+   "params": {
+    "raise_mm": 2.8
+   },
+   "t": 22.4
+  },
+  {
+   "phase": "paint",
+   "tool": "Project",
+   "target": "video colour",
+   "note": "179 frames projected onto the sculpt, each posed and expression-matched first, hidden points skipped",
+   "params": {
+    "frames": 179
+   },
+   "t": 24.0
+  },
+  {
+   "phase": "paint",
+   "tool": "Even out",
+   "target": "lighting",
+   "note": "the window lit one cheek and the lamp the other; broad light flattened, detail kept",
+   "params": {
+    "passes": 2
+   },
+   "t": 25.6
+  },
+  {
+   "phase": "paint",
+   "tool": "Fill",
+   "target": "unseen skin",
+   "note": "sides and back the camera never saw, filled outward from what it did see",
+   "params": {
+    "seen": "31%"
+   },
+   "t": 27.2
+  },
+  {
+   "phase": "finish",
+   "tool": "Turntable",
+   "target": "finished bust",
+   "note": "a full turn of the painted bust at rest",
+   "params": {},
+   "t": 28.8
+  },
+  {
+   "phase": "motion",
+   "tool": "Transfer",
+   "target": "expressions",
+   "note": "every sculpt vertex follows the tracked points through the face map (35,722 vertices move)",
+   "params": {
+    "moving_verts": 35722
+   },
+   "t": 32.8
+  },
+  {
+   "phase": "motion",
+   "tool": "Compress",
+   "target": "12 motion shapes",
+   "note": "PCA of the clip's 358 frames of point motion: 12 shapes cover 98%",
+   "params": {
+    "shapes": 12
+   },
+   "t": 35.8
+  },
+  {
+   "phase": "motion",
+   "tool": "Replay",
+   "target": "head + gaze",
+   "note": "head rotation and eye direction from every frame",
+   "params": {
+    "turn_deg": "-12 to 8"
+   },
+   "t": 38.8
+  },
+  {
+   "phase": "motion",
+   "tool": "Replay",
+   "target": "the clip",
+   "note": "the 12 seconds performed by the sculpt, in real time",
+   "params": {},
+   "t": 41.8
+  }
+ ],
+ "duration": 44.8
+}
