@@ -531,7 +531,7 @@ Promise.all([new Promise((res,rej)=>ld.load('sam/take2/sam_take2.glb',res,undefi
   o.geometry.setAttribute('headW',new THREE.BufferAttribute(w,1));
   const m=o.material.clone();o.material=m;m.metalness=0;
   if(o.geometry.attributes.color){o.userData.paint=o.geometry.attributes.color;const ca=o.geometry.attributes._clay;
-   if(ca){const n=ca.count,f=new Float32Array(n*3);for(let i=0;i<n;i++){f[i*3]=ca.getX(i)*0.55;f[i*3+1]=ca.getY(i)*0.55;f[i*3+2]=ca.getZ(i)*0.55;}o.userData.clay=new THREE.BufferAttribute(f,3);}}
+   if(ca){const n=ca.count,f=new Float32Array(n*3);for(let i=0;i<n;i++){f[i*3]=ca.getX(i)*0.38;f[i*3+1]=ca.getY(i)*0.38;f[i*3+2]=ca.getZ(i)*0.38;}o.userData.clay=new THREE.BufferAttribute(f,3);}}
   patch2(m,o,kind);o.frustumCulled=false;parts[nm==='eyeR'||nm==='eyeL'?nm:o.name]=o;
  });
  S2.add(g.scene);
