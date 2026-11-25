@@ -39,10 +39,18 @@ for n in list(nt.nodes): nt.nodes.remove(n)
 out = nt.nodes.new('ShaderNodeOutputMaterial'); em = nt.nodes.new('ShaderNodeEmission'); lw = nt.nodes.new('ShaderNodeLayerWeight')
 ramp = nt.nodes.new('ShaderNodeValToRGB'); mix = nt.nodes.new('ShaderNodeMixShader'); tr = nt.nodes.new('ShaderNodeBsdfTransparent')
 lw.inputs['Blend'].default_value = 0.45
-ramp.color_ramp.elements[0].color = (1.0, 0.93, 0.7, 1); ramp.color_ramp.elements[1].color = (1.0, 0.45, 0.08, 1); ramp.color_ramp.elements[1].position = 0.85
-nt.links.new(lw.outputs['Facing'], ramp.inputs[0]); nt.links.new(ramp.outputs[0], em.inputs['Color']); em.inputs['Strength'].default_value = 22
+ramp.color_ramp.elements[0].color = (1.0, 0.82, 0.42, 1); ramp.color_ramp.elements[1].color = (1.0, 0.38, 0.04, 1); ramp.color_ramp.elements[1].position = 0.8
+nt.links.new(lw.outputs['Facing'], ramp.inputs[0]); nt.links.new(ramp.outputs[0], em.inputs['Color']); em.inputs['Strength'].default_value = 9
 nt.links.new(lw.outputs['Facing'], mix.inputs[0]); nt.links.new(em.outputs[0], mix.inputs[1]); nt.links.new(tr.outputs[0], mix.inputs[2])
 nt.links.new(mix.outputs[0], out.inputs['Surface'])
+HALO = bpy.data.materials.new('Halo'); HALO.use_nodes = True; nt = HALO.node_tree
+for n in list(nt.nodes): nt.nodes.remove(n)
+ho = nt.nodes.new('ShaderNodeOutputMaterial'); he = nt.nodes.new('ShaderNodeEmission'); ht = nt.nodes.new('ShaderNodeBsdfTransparent'); ha = nt.nodes.new('ShaderNodeAddShader'); hl = nt.nodes.new('ShaderNodeLayerWeight'); hi = nt.nodes.new('ShaderNodeMath'); hp = nt.nodes.new('ShaderNodeMath'); hs = nt.nodes.new('ShaderNodeMath')
+he.inputs['Color'].default_value = (1.0, 0.68, 0.22, 1); hl.inputs['Blend'].default_value = 0.5
+hi.operation = 'SUBTRACT'; hi.inputs[0].default_value = 1.0; hp.operation = 'POWER'; hp.inputs[1].default_value = 4.0; hs.operation = 'MULTIPLY'; hs.inputs[1].default_value = 0.9
+nt.links.new(hl.outputs['Facing'], hi.inputs[1]); nt.links.new(hi.outputs[0], hp.inputs[0]); nt.links.new(hp.outputs[0], hs.inputs[0]); nt.links.new(hs.outputs[0], he.inputs['Strength'])
+nt.links.new(ht.outputs[0], ha.inputs[0]); nt.links.new(he.outputs[0], ha.inputs[1]); nt.links.new(ha.outputs[0], ho.inputs['Surface'])
+HALO.blend_method = 'BLEND' if hasattr(HALO, 'blend_method') else None
 SMOKE = bpy.data.materials.new('Smoke'); SMOKE.use_nodes = True; nt = SMOKE.node_tree
 for n in list(nt.nodes): nt.nodes.remove(n)
 o2 = nt.nodes.new('ShaderNodeOutputMaterial'); m2 = nt.nodes.new('ShaderNodeMixShader'); t2 = nt.nodes.new('ShaderNodeBsdfTransparent'); d2 = nt.nodes.new('ShaderNodeBsdfDiffuse')
@@ -113,6 +121,7 @@ for i, (c, wk) in enumerate(zip(L['candles'], L['wicks'])):
     wv, wf = tube(wpath, 0.09, 0.07, 6); PROPS.append(('Wick ' + c['name'], wv, wf, WICK))
     tip = wpath[-1]
     fh = 2.4 + 0.25 * i % 2; fv, ff = flame_mesh(tip - np.array([0, 0, 0.55]), fh, 0.55); PROPS.append(('Flame ' + c['name'], fv, ff, FLAME))
+    hv, hf = flame_mesh(tip - np.array([0, 0, 1.6]), fh + 3.2, 1.9); PROPS.append(('Halo ' + c['name'], hv, hf, HALO))
     # smoke: two twisting strands rising from above the flame, like the pencil ribbons
     for s in range(2):
         ph = rng.uniform(0, 6.3); amp = rng.uniform(0.5, 1.1); top = rng.uniform(5.5, 8.5)
@@ -130,7 +139,9 @@ def set_props(visible):
     for o in PROP_OBJS + GLOWS: o.hide_render = not visible
 
 
-wax_mi = D['dish'][F0].all(1).astype(np.int32)
+_V = D['v']; _rr = np.min([np.hypot(_V[:, 0] - c['x'], _V[:, 1] - c['y']) - c['r'] for c in L['candles']], 0)
+_dish = (_rr > 0.25) | (_V[:, 2] < 0.55)
+wax_mi = _dish[F0].all(1).astype(np.int32)
 
 if part == 'tl':
     sc.cycles.samples = 6; sc.render.resolution_x = 480; sc.render.resolution_y = 600

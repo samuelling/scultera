@@ -40,7 +40,7 @@ figcaption{font-size:12.5px;color:var(--muted);margin-top:6px}
 .console li:hover{opacity:.85}.console li.past{opacity:.8}
 .console li.on{opacity:1;background:#332d26;border-left-color:var(--flame)}
 .console li .t{color:#8c7f6e}.console li .tool{color:#f0b26b}.console li .tgt{color:#fff}.console li .p{color:#9d9080;display:block}
-.console li.ph{opacity:1;color:#a99b88;letter-spacing:.12em;text-transform:uppercase;font-size:10.5px;padding-top:12px;cursor:default;background:none}
+.console li.ph{display:block;opacity:1;color:#a99b88;letter-spacing:.12em;text-transform:uppercase;font-size:10.5px;padding-top:12px;cursor:default;background:none}
 .note{font-size:13.5px;color:var(--muted)}
 section.live{margin:56px 0 0}
 h2{font:600 32px/1.1 Fraunces,serif;margin:0 0 8px;letter-spacing:-.01em}
@@ -213,6 +213,7 @@ const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
 loader.load('candles/candles.glb',gl=>{
  gl.scene.traverse(o=>{
   if(!o.isMesh)return;const nm=o.name;
+  if(nm.startsWith('Halo')){o.visible=false;return;}
   if(nm.startsWith('Flame')){
    o.material=new THREE.MeshBasicMaterial({color:0xffc46a,transparent:true,opacity:0.92,blending:THREE.AdditiveBlending,depthWrite:false});
    o.geometry.computeBoundingBox();const bb=o.geometry.boundingBox;const c=new THREE.Vector3();bb.getCenter(c);o.updateWorldMatrix(true,false);c.applyMatrix4(o.matrixWorld);
