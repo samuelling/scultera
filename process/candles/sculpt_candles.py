@@ -1,4 +1,4 @@
-"""Sculpt Sam's candle drawing: four pillar candles on a blue dish.
+"""Sculpt Emmy's candle drawing: four pillar candles on a blue dish.
 Writes frames/blk_XX.npz (blockout, own topology), frames/sc_XXX.npy (sculpt snapshots), final.npz, props.npz, log.json
 Units cm. X right, Y depth (camera at -Y), Z up. Table top at z = 0.
 """
