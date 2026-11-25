@@ -1,0 +1,969 @@
+{
+ "entries": [
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "cranium",
+   "note": "one big egg for the skull",
+   "params": {
+    "primitives": 1
+   },
+   "t": 0.0
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "face mass",
+   "note": "the front plane of the face",
+   "params": {
+    "primitives": 1
+   },
+   "t": 0.45
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "cheekbone",
+   "note": "zygomatic arch, tucked under the face",
+   "params": {
+    "primitives": 2
+   },
+   "t": 0.9
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "jaw line",
+   "note": "mandible, from under the ear to the chin",
+   "params": {
+    "primitives": 2
+   },
+   "t": 1.35
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "chin",
+   "note": "mental protuberance",
+   "params": {
+    "primitives": 1
+   },
+   "t": 1.8
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "muzzle",
+   "note": "the dental arch the lips wrap around",
+   "params": {
+    "primitives": 1
+   },
+   "t": 2.25
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "nose",
+   "note": "bridge to tip wedge",
+   "params": {
+    "primitives": 1
+   },
+   "t": 2.7
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "nostril wing",
+   "note": "alar lobe",
+   "params": {
+    "primitives": 2
+   },
+   "t": 3.15
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "brow ridge",
+   "note": "supraorbital bar",
+   "params": {
+    "primitives": 1
+   },
+   "t": 3.6
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "ear",
+   "note": "flattened disc, flared ~28 deg",
+   "params": {
+    "primitives": 1
+   },
+   "t": 4.05
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "ear bowl",
+   "note": "concha carved into the ear disc",
+   "params": {
+    "primitives": 1
+   },
+   "t": 4.5
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "ear",
+   "note": "flattened disc, flared ~28 deg",
+   "params": {
+    "primitives": 1
+   },
+   "t": 4.95
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "ear bowl",
+   "note": "concha carved into the ear disc",
+   "params": {
+    "primitives": 1
+   },
+   "t": 5.4
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "neck",
+   "note": "cylinder, slightly forward-leaning",
+   "params": {
+    "primitives": 1
+   },
+   "t": 5.85
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "trapezius",
+   "note": "shoulder slope",
+   "params": {
+    "primitives": 1
+   },
+   "t": 6.3
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "chest",
+   "note": "upper chest block",
+   "params": {
+    "primitives": 1
+   },
+   "t": 6.75
+  },
+  {
+   "phase": "blockout",
+   "tool": "Trim",
+   "target": "bust cut",
+   "note": "flat bottom of the bust",
+   "params": {
+    "primitives": 1
+   },
+   "t": 7.2
+  },
+  {
+   "phase": "blockout",
+   "tool": "Trim",
+   "target": "bust sides",
+   "note": "trim the shoulders",
+   "params": {
+    "primitives": 1
+   },
+   "t": 7.65
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "face",
+   "note": "your averaged face surface",
+   "params": {
+    "primitives": 1
+   },
+   "t": 8.1
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "mouth slit",
+   "note": "cut along your lip line so the jaw can open",
+   "params": {
+    "primitives": 1
+   },
+   "t": 8.55
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "oral cavity",
+   "note": "hollow behind the lips",
+   "params": {
+    "primitives": 1
+   },
+   "t": 9.0
+  },
+  {
+   "phase": "mesh",
+   "tool": "Voxel remesh",
+   "target": "whole bust",
+   "note": "marching cubes at 1.2 mm",
+   "params": {
+    "verts": 239439,
+    "tris": 478800
+   },
+   "t": 9.45
+  },
+  {
+   "phase": "sculpt",
+   "tool": "Smooth",
+   "target": "whole bust",
+   "note": "relax the voxel stair-steps",
+   "params": {
+    "iterations": 2
+   },
+   "t": 9.75
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "eyes",
+   "note": "pull onto your averaged 9-photo face (pass 1 of 3)",
+   "params": {
+    "max_move_cm": 0.21
+   },
+   "t": 10.05
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "nose",
+   "note": "pull onto your averaged 9-photo face (pass 1 of 3)",
+   "params": {
+    "max_move_cm": 0.062
+   },
+   "t": 10.6
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "mouth",
+   "note": "pull onto your averaged 9-photo face (pass 1 of 3)",
+   "params": {
+    "max_move_cm": 0.301
+   },
+   "t": 11.15
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "chin & jaw",
+   "note": "pull onto your averaged 9-photo face (pass 1 of 3)",
+   "params": {
+    "max_move_cm": 0.022
+   },
+   "t": 11.7
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "head & jaw blend",
+   "note": "pull onto your averaged 9-photo face (pass 1 of 3)",
+   "params": {
+    "max_move_cm": 0.206
+   },
+   "t": 12.25
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "eyes",
+   "note": "pull onto your averaged 9-photo face (pass 2 of 3)",
+   "params": {
+    "max_move_cm": 0.163
+   },
+   "t": 12.8
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "nose",
+   "note": "pull onto your averaged 9-photo face (pass 2 of 3)",
+   "params": {
+    "max_move_cm": 0.048
+   },
+   "t": 13.35
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "mouth",
+   "note": "pull onto your averaged 9-photo face (pass 2 of 3)",
+   "params": {
+    "max_move_cm": 0.234
+   },
+   "t": 13.9
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "chin & jaw",
+   "note": "pull onto your averaged 9-photo face (pass 2 of 3)",
+   "params": {
+    "max_move_cm": 0.017
+   },
+   "t": 14.45
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "head & jaw blend",
+   "note": "pull onto your averaged 9-photo face (pass 2 of 3)",
+   "params": {
+    "max_move_cm": 0.16
+   },
+   "t": 15.0
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "forehead",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.017
+   },
+   "t": 15.55
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "brows",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.076
+   },
+   "t": 16.1
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "eyes",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.093
+   },
+   "t": 16.65
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "nose",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.028
+   },
+   "t": 17.2
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "cheeks",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.081
+   },
+   "t": 17.75
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "mouth",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.134
+   },
+   "t": 18.3
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "chin & jaw",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.01
+   },
+   "t": 18.85
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "face outline",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.003
+   },
+   "t": 19.4
+  },
+  {
+   "phase": "fit",
+   "tool": "Grab",
+   "target": "head & jaw blend",
+   "note": "pull onto your averaged 9-photo face (pass 3 of 3)",
+   "params": {
+    "max_move_cm": 0.091
+   },
+   "t": 19.95
+  },
+  {
+   "phase": "fit",
+   "tool": "Voxel remesh",
+   "target": "whole bust",
+   "note": "rebuild even topology after the big Grab moves",
+   "params": {
+    "verts": 239757,
+    "tris": 479436
+   },
+   "t": 20.5
+  },
+  {
+   "phase": "fit",
+   "tool": "Check",
+   "target": "all 468 landmarks",
+   "note": "distance from sculpt surface to your averaged landmarks",
+   "params": {
+    "mean_mm": 3.219,
+    "p95_mm": 6.836
+   },
+   "t": 21.6
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease + Draw",
+   "target": "upper lid R",
+   "note": "lid margin, then roll the lid edge forward",
+   "params": {
+    "radius_cm": 0.14
+   },
+   "t": 21.95
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease + Draw",
+   "target": "upper lid L",
+   "note": "lid margin, then roll the lid edge forward",
+   "params": {
+    "radius_cm": 0.14
+   },
+   "t": 22.3
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease + Inflate",
+   "target": "lower lid R",
+   "note": "lower lid line and the soft smile-bag under it",
+   "params": {
+    "radius_cm": 0.12
+   },
+   "t": 23.0
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease + Inflate",
+   "target": "lower lid L",
+   "note": "lower lid line and the soft smile-bag under it",
+   "params": {
+    "radius_cm": 0.12
+   },
+   "t": 23.7
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "iris R",
+   "note": "incise the iris ring, drill the pupil",
+   "params": {
+    "ring_radius_cm": 0.516
+   },
+   "t": 24.4
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "iris L",
+   "note": "incise the iris ring, drill the pupil",
+   "params": {
+    "ring_radius_cm": 0.522
+   },
+   "t": 25.1
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "crow's feet R",
+   "note": "four fanned lines from the outer eye corner",
+   "params": {
+    "lines": 4
+   },
+   "t": 25.8
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "crow's feet L",
+   "note": "four fanned lines from the outer eye corner",
+   "params": {
+    "lines": 4
+   },
+   "t": 26.5
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "nostril R",
+   "note": "tuck under the alar wing",
+   "params": {
+    "radius_cm": 0.12
+   },
+   "t": 27.2
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "nostril L",
+   "note": "tuck under the alar wing",
+   "params": {
+    "radius_cm": 0.12
+   },
+   "t": 27.55
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "alar groove R",
+   "note": "groove where the nose wing meets the cheek",
+   "params": {
+    "radius_cm": 0.12
+   },
+   "t": 27.9
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "alar groove L",
+   "note": "groove where the nose wing meets the cheek",
+   "params": {
+    "radius_cm": 0.12
+   },
+   "t": 28.25
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "vermilion border",
+   "note": "the edge of the lips, upper and lower",
+   "params": {
+    "radius_cm": 0.09
+   },
+   "t": 28.6
+  },
+  {
+   "phase": "detail",
+   "tool": "Inflate + Crease",
+   "target": "lips and philtrum",
+   "note": "fill out the lips, groove the philtrum",
+   "params": {
+    "radius_cm": 0.35
+   },
+   "t": 29.3
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease + Draw",
+   "target": "nasolabial fold R",
+   "note": "smile line from nose wing to mouth corner, with the cheek rolling over it",
+   "params": {
+    "radius_cm": 0.18
+   },
+   "t": 30.0
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease + Draw",
+   "target": "nasolabial fold L",
+   "note": "smile line from nose wing to mouth corner, with the cheek rolling over it",
+   "params": {
+    "radius_cm": 0.18
+   },
+   "t": 30.7
+  },
+  {
+   "phase": "detail",
+   "tool": "Inflate",
+   "target": "cheek apple R",
+   "note": "round the cheek where it lifts when you smile",
+   "params": {
+    "radius_cm": 1.0
+   },
+   "t": 31.4
+  },
+  {
+   "phase": "detail",
+   "tool": "Inflate",
+   "target": "cheek apple L",
+   "note": "round the cheek where it lifts when you smile",
+   "params": {
+    "radius_cm": 1.0
+   },
+   "t": 31.75
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "chin crease",
+   "note": "mentolabial sulcus under the lower lip",
+   "params": {
+    "radius_cm": 0.2
+   },
+   "t": 32.1
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "forehead lines",
+   "note": "three faint horizontal lines",
+   "params": {
+    "lines": 3
+   },
+   "t": 32.8
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw",
+   "target": "neck tendons",
+   "note": "sternocleidomastoids, ear to collarbone notch",
+   "params": {
+    "radius_cm": 0.9
+   },
+   "t": 33.5
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw + Crease",
+   "target": "collarbones",
+   "note": "clavicles and the notch between them",
+   "params": {
+    "radius_cm": 0.55
+   },
+   "t": 34.2
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw (masked)",
+   "target": "hair mass",
+   "note": "buzz-cut layer, hairline receding at the temples",
+   "params": {
+    "thickness_cm": 0.1
+   },
+   "t": 34.9
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease (stipple)",
+   "target": "hair texture",
+   "note": "thousands of short grooves flowing from the crown",
+   "params": {
+    "grooves": 5500
+   },
+   "t": 35.6
+  },
+  {
+   "phase": "finish",
+   "tool": "Smooth",
+   "target": "whole bust",
+   "note": "one light polish pass",
+   "params": {
+    "strength": 0.15
+   },
+   "t": 36.3
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Smile",
+   "note": "closed-mouth smile",
+   "params": {
+    "max_move_cm": 0.466
+   },
+   "t": 37.9
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Grin",
+   "note": "big toothy smile",
+   "params": {
+    "max_move_cm": 1.015
+   },
+   "t": 38.65
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Crinkle",
+   "note": "squinting grin, head tilted",
+   "params": {
+    "max_move_cm": 0.98
+   },
+   "t": 39.4
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Laugh",
+   "note": "open-mouth laugh",
+   "params": {
+    "max_move_cm": 2.933
+   },
+   "t": 40.15
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Brows up",
+   "note": "eyebrows lifted (from the shout photo, upper face only)",
+   "params": {
+    "max_move_cm": 0.593
+   },
+   "t": 40.9
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Shout",
+   "note": "wide-eyed shout",
+   "params": {
+    "max_move_cm": 4.075
+   },
+   "t": 41.65
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Blink",
+   "note": "built by hand, not photographed",
+   "params": {
+    "max_move_cm": 0.589
+   },
+   "t": 42.4
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Beam",
+   "note": "wide smile, head turned",
+   "params": {
+    "max_move_cm": 0.77
+   },
+   "t": 43.15
+  },
+  {
+   "phase": "expression",
+   "tool": "Shape key",
+   "target": "Squint",
+   "note": "sunny squint",
+   "params": {
+    "max_move_cm": 0.56
+   },
+   "t": 43.9
+  },
+  {
+   "phase": "expression",
+   "tool": "Rest",
+   "target": "resting face",
+   "note": "back to the averaged resting face",
+   "params": {},
+   "t": 44.65
+  }
+ ],
+ "expressions": [
+  {
+   "name": "Smile",
+   "note": "closed-mouth smile",
+   "photo": true,
+   "weights": {
+    "Smile": 1
+   },
+   "pose": [
+    1.1,
+    0.2,
+    -0.0
+   ]
+  },
+  {
+   "name": "Grin",
+   "note": "big toothy smile",
+   "photo": true,
+   "weights": {
+    "Grin": 1
+   },
+   "pose": [
+    0.4,
+    -0.2,
+    -9.1
+   ]
+  },
+  {
+   "name": "Crinkle",
+   "note": "squinting grin, head tilted",
+   "photo": true,
+   "weights": {
+    "Crinkle": 1
+   },
+   "pose": [
+    -1.0,
+    17.6,
+    9.5
+   ]
+  },
+  {
+   "name": "Beam",
+   "note": "wide smile, head turned",
+   "photo": true,
+   "weights": {
+    "Beam": 1
+   },
+   "pose": [
+    -0.6,
+    9.6,
+    13.6
+   ]
+  },
+  {
+   "name": "Laugh",
+   "note": "open-mouth laugh",
+   "photo": true,
+   "weights": {
+    "Laugh": 1
+   },
+   "pose": [
+    -10.4,
+    -16.2,
+    -18.9
+   ]
+  },
+  {
+   "name": "Shout",
+   "note": "wide-eyed shout",
+   "photo": true,
+   "weights": {
+    "Shout": 1
+   },
+   "pose": [
+    5.7,
+    -1.5,
+    9.7
+   ]
+  },
+  {
+   "name": "Squint",
+   "note": "sunny squint",
+   "photo": true,
+   "weights": {
+    "Squint": 1
+   },
+   "pose": [
+    4.3,
+    -0.8,
+    -8.6
+   ]
+  },
+  {
+   "name": "Brows up",
+   "note": "eyebrows lifted (from the shout photo, upper face only)",
+   "photo": false,
+   "weights": {
+    "Brows up": 1,
+    "Smile": 0.3
+   },
+   "pose": [
+    6,
+    0,
+    -8
+   ]
+  },
+  {
+   "name": "Blink",
+   "note": "built by hand, not photographed",
+   "photo": false,
+   "weights": {
+    "Blink": 1,
+    "Smile": 0.4
+   },
+   "pose": [
+    -4,
+    3,
+    10
+   ]
+  }
+ ],
+ "photos": [
+  {
+   "label": "Selfie, facing camera",
+   "expr": "closed-mouth smile",
+   "pose": "turn 0\u00b0 \u00b7 tilt 1\u00b0 \u00b7 nod 2\u00b0"
+  },
+  {
+   "label": "Selfie from below",
+   "expr": "rest face (70%)",
+   "pose": "turn 23\u00b0 \u00b7 tilt 4\u00b0 \u00b7 nod 11\u00b0"
+  },
+  {
+   "label": "Selfie, tilted",
+   "expr": "squinting grin, head tilted",
+   "pose": "turn 17\u00b0 \u00b7 tilt 53\u00b0 \u00b7 nod 2\u00b0"
+  },
+  {
+   "label": "Selfie, facing camera",
+   "expr": "big toothy smile",
+   "pose": "turn 16\u00b0 \u00b7 tilt 1\u00b0 \u00b7 nod 1\u00b0"
+  },
+  {
+   "label": "Group selfie",
+   "expr": "wide smile, head turned",
+   "pose": "turn 25\u00b0 \u00b7 tilt 29\u00b0 \u00b7 nod 1\u00b0"
+  },
+  {
+   "label": "Film portrait (B&W)",
+   "expr": "sunny squint \u00b7 rest face (30%)",
+   "pose": "turn 16\u00b0 \u00b7 tilt 2\u00b0 \u00b7 nod 8\u00b0"
+  },
+  {
+   "label": "Selfie from below",
+   "expr": "open-mouth laugh",
+   "pose": "turn 34\u00b0 \u00b7 tilt 49\u00b0 \u00b7 nod 19\u00b0"
+  },
+  {
+   "label": "Selfie, outdoors",
+   "expr": "rest face",
+   "pose": "turn 21\u00b0 \u00b7 tilt 8\u00b0 \u00b7 nod 1\u00b0"
+  },
+  {
+   "label": "Selfie, close",
+   "expr": "wide-eyed shout",
+   "pose": "turn 18\u00b0 \u00b7 tilt 4\u00b0 \u00b7 nod 10\u00b0"
+  }
+ ],
+ "fit": {
+  "mean_mm": 3.219,
+  "p95_mm": 6.836,
+  "verts": 239757
+ },
+ "duration": 45.4
+}

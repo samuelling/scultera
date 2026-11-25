@@ -17,7 +17,11 @@ a{color:var(--accent)}
 .stage{position:sticky;top:0;height:100vh;background:radial-gradient(120% 90% at 40% 45%,#ece8e2 0%,#d6d0c8 70%,#c9c2b9 100%);overflow:hidden}
 #c{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
 #c:active{cursor:grabbing}
-.brand{position:absolute;left:28px;top:22px;pointer-events:none}
+.brand{position:absolute;left:28px;top:22px}
+.brand h1,.brand p{pointer-events:none}
+.tabs{display:inline-flex;gap:4px;background:rgba(244,241,236,.85);border:1px solid rgba(31,27,22,.15);border-radius:999px;padding:3px;margin-top:10px}
+.tabs a{font:500 12px/1 'Instrument Sans',sans-serif;padding:7px 13px;border-radius:999px;text-decoration:none;color:var(--ink)}
+.tabs a.on{background:var(--accent-2);color:#f4f1ec}
 .brand h1{font:600 30px/1 Fraunces,serif;letter-spacing:-.01em;margin:0}
 .brand p{margin:6px 0 0;color:var(--muted);font-size:13px}
 .label{position:absolute;left:28px;bottom:104px;pointer-events:none}
@@ -76,7 +80,7 @@ footer{margin-top:10vh;font-size:13px;color:var(--muted)}
  .label{bottom:64px;left:18px}.label .t{font-size:18px}
  .hint{display:none}
  .rail{left:18px;right:18px;bottom:16px}
- .tools{left:18px;right:auto;top:66px;justify-content:flex-start}.tools button{padding:7px 10px;font-size:11px}.brand{left:18px;top:16px}
+ .tools{left:18px;right:auto;top:104px;justify-content:flex-start}.tools button{padding:7px 10px;font-size:11px}.brand{left:18px;top:16px}
  .step{min-height:60vh}
  .intro h2{font-size:32px}
 }
@@ -87,7 +91,7 @@ footer{margin-top:10vh;font-size:13px;color:var(--muted)}
 <div class="layout">
  <section class="stage" aria-label="Interactive 3D model">
   <canvas id="c"></canvas>
-  <div class="brand"><h1>Scultera</h1><p>A sad gecko, sculpted in code</p></div>
+  <div class="brand"><h1>Scultera</h1><p>A sad gecko, sculpted in code</p><nav class="tabs" aria-label="Sculptures"><a class="on" href="./" aria-current="page">Sad gecko</a><a href="sam.html">Sam</a><a href="candles.html">Candles</a></nav></div>
   <div class="tools">
    <button id="bSpin" aria-pressed="false">Turntable</button>
    <button id="bWire" aria-pressed="false">Wireframe</button>

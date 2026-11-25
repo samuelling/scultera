@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scultera: Sam, in clay</title>
+<meta name="description" content="A clay bust of Sam sculpted in Blender from nine photos, with a time-lapse of every brush stroke and a live face you can make expressions with.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8e4de;--ink:#1f1b16;--muted:#6d655b;--line:#cfc8be;--card:#f4f1ec;--accent:#c9741f;--dark:#25211c;--clay:#9b7e68}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 32px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(232,228,222,.92);backdrop-filter:blur(8px);z-index:10}
+.top .name{font:600 24px/1 Fraunces,serif}
+.tabs{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+.tabs a{font:500 13px/1 "Instrument Sans";padding:8px 16px;border-radius:999px;text-decoration:none;color:var(--ink)}
+.tabs a.on{background:var(--dark);color:#f4f1ec}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.hero{padding:44px 0 18px}
+.kicker{font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font:600 46px/1.05 Fraunces,serif;letter-spacing:-.015em;margin:12px 0 14px}
+.lede{max-width:760px;font-size:18px;color:#3d362e;margin:0}
+.tl{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,1fr);gap:18px;margin:28px 0 10px}
+.vid{position:relative;background:#5b5650;border-radius:14px;overflow:hidden;aspect-ratio:1/1}
+.vid video{width:100%;height:100%;display:block;object-fit:cover}
+.vid .badge{position:absolute;left:14px;top:14px;font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;background:rgba(37,33,28,.78);color:#f4d9b5;padding:7px 10px;border-radius:999px}
+.vid .now{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(37,33,28,.8);color:#efe6d8;padding:10px 12px;border-radius:10px;font:400 13px/1.45 "Instrument Sans"}
+.vid .now b{font-weight:600;color:#fff}
+.console{background:var(--dark);color:#d8cfc1;border-radius:14px;display:flex;flex-direction:column;min-height:0;max-height:min(80vh,820px)}
+.console header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #3a342d;font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:#a99b88}
+.console header button{background:none;border:1px solid #4a433a;color:#efe6d8;border-radius:999px;padding:6px 10px;font:500 11px "JetBrains Mono",monospace;cursor:pointer}
+.console ol{list-style:none;margin:0;padding:6px 0;overflow:auto;flex:1;font:400 12px/1.5 "JetBrains Mono",monospace}
+.console li{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:5px 14px;cursor:pointer;border-left:3px solid transparent;opacity:.55}
+.console li:hover{opacity:.85}
+.console li.past{opacity:.8}
+.console li.on{opacity:1;background:#332d26;border-left-color:var(--accent)}
+.console li .t{color:#8c7f6e}
+.console li .tool{color:#f0b26b}
+.console li .tgt{color:#fff}
+.console li .p{color:#9d9080;display:block}
+.console li.ph{opacity:1;color:#a99b88;letter-spacing:.12em;text-transform:uppercase;font-size:10.5px;padding-top:12px;cursor:default;border-left-color:transparent;background:none}
+.note{font-size:13.5px;color:var(--muted)}
+section.live{margin:56px 0 0}
+h2{font:600 32px/1.1 Fraunces,serif;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:#3d362e;max-width:780px;margin:0 0 18px}
+.stage{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:18px}
+.view{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(110% 90% at 45% 40%,#efebe5 0%,#d4cec5 70%,#c4bdb3 100%);aspect-ratio:4/3.4}
+#c{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+.view .hint{position:absolute;right:14px;bottom:12px;font:400 11.5px "JetBrains Mono",monospace;color:var(--muted);pointer-events:none}
+.view .say{position:absolute;left:16px;top:14px;font:600 22px/1.2 Fraunces,serif;pointer-events:none}
+.view .say small{display:block;font:400 12.5px/1.4 "Instrument Sans";color:var(--muted);margin-top:4px}
+.load{position:absolute;inset:0;display:grid;place-items:center;font:500 13px "JetBrains Mono",monospace;color:var(--muted);transition:opacity .5s}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 10px;display:flex;flex-direction:column;gap:12px}
+.panel .row{display:flex;gap:8px;flex-wrap:wrap}
+.panel button{font:500 13px "Instrument Sans";padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink)}
+.panel button.primary{background:var(--dark);color:#f4f1ec;border-color:var(--dark)}
+.panel button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.panel h3{font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:6px 0 0}
+.sl{display:grid;grid-template-columns:86px 1fr 34px;align-items:center;gap:10px;font-size:13.5px}
+.sl input{width:100%;accent-color:var(--accent)}
+.sl output{font:400 11.5px "JetBrains Mono",monospace;color:var(--muted);text-align:right}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{font-size:12.5px;padding:6px 10px}
+section.notes{margin:64px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px}
+.card .n{font:500 11px "JetBrains Mono",monospace;color:var(--accent);letter-spacing:.08em}
+.card h4{font:600 19px/1.25 Fraunces,serif;margin:8px 0 8px}
+.card p{margin:0 0 10px;color:#3d362e;font-size:15px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:6px 0 10px}
+.facts div{background:#fff;padding:9px 10px 8px}
+.facts b{display:block;font:500 15px/1.1 "JetBrains Mono",monospace}
+.facts small{font-size:11.5px;color:var(--muted)}
+table.photos{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+table.photos td,table.photos th{padding:6px 6px;border-bottom:1px solid var(--line);text-align:left}
+table.photos th{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+table.photos td.m{font-family:"JetBrains Mono",monospace;font-size:12px}
+pre{background:var(--dark);color:#efe6d8;border-radius:10px;padding:12px 14px;overflow:auto;font:400 12px/1.6 "JetBrains Mono",monospace;margin:8px 0}
+.dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:18px 0 0}
+.dl a{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.dl a small{color:var(--muted);font:400 12px "JetBrains Mono",monospace}
+footer{margin:60px 0 50px;font-size:13px;color:var(--muted)}
+@media (max-width:900px){
+ .wrap{padding:0 18px}.top{padding:14px 18px}
+ .tl,.stage{grid-template-columns:minmax(0,1fr)}
+ .console{max-height:46vh}
+ h1{font-size:34px}
+ .view{aspect-ratio:1/1.05}
+}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body>
+<div class="top">
+ <div class="name">Scultera</div>
+ <nav class="tabs" aria-label="Sculptures"><a href="./">Sad gecko</a><a class="on" href="sam.html" aria-current="page">Sam</a><a href="candles.html">Candles</a></nav>
+</div>
+
+<div class="wrap">
+ <section class="hero">
+  <div class="kicker">Sculpt 02 · a person</div>
+  <h1>Sam, in clay, from nine photos</h1>
+  <p class="lede">A Blender bust built from nine photos in Sam's own library. The shape is measured from his face across all nine, and the expressions and head movements come from those same photos. Watch every brush stroke build the head below, then make faces with the finished sculpt.</p>
+ </section>
+
+ <div class="tl">
+  <div class="vid">
+   <video id="vid" src="sam/sculpt.mp4" poster="sam/poster.jpg" muted playsinline controls preload="metadata"></video>
+   <div class="badge" id="badge">blockout</div>
+   <div class="now" id="now">Press play to watch the sculpt build, stroke by stroke.</div>
+  </div>
+  <div class="console" aria-label="Sculpt log">
+   <header><span>sculpt log · <span id="count">–</span> steps</span><button id="follow" aria-pressed="true">follow</button></header>
+   <ol id="log"></ol>
+  </div>
+ </div>
+ <p class="note">Each line in the log is one stroke or step. Click a line to jump the video there. After the sculpt, the video runs through the expressions and head poses taken from the photos.</p>
+
+ <section class="live">
+  <h2>Make faces</h2>
+  <p class="sub">The finished bust is live below. Each expression is a shape key measured from one of the photos, and the head turns and tilts the way it did when each photo was taken. Press <b>Perform</b> to watch it cycle through all of them with idle motion and blinks, or mix your own with the sliders.</p>
+  <div class="stage">
+   <div class="view">
+    <canvas id="c"></canvas>
+    <div class="say" id="say">At rest<small>drag to orbit · scroll to zoom</small></div>
+    <div class="hint">right-drag to pan</div>
+    <div class="load" id="load">loading the bust…</div>
+   </div>
+   <div class="panel">
+    <div class="row"><button class="primary" id="perform" aria-pressed="false">Perform</button><button id="reset">Rest face</button><button id="blinkBtn">Blink</button></div>
+    <h3>From the photos</h3>
+    <div class="chips" id="chips"></div>
+    <h3>Expressions</h3>
+    <div id="sliders"></div>
+    <h3>Head</h3>
+    <div id="head"></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="notes">
+  <div class="kicker">How it was made</div>
+  <h2>Photos → measurements → clay</h2>
+  <div class="grid">
+   <div class="card"><div class="n">01 / photos</div><h4>Nine photos, one face each</h4>
+    <p>All nine came from the "Sam Ling" person album in Apple Photos. Photos' own face labels confirmed which face was Sam's, and each crop was cut so his face is the only one in it. The photos themselves are not published here, only measurements taken from them.</p>
+    <table class="photos"><thead><tr><th>Photo</th><th>Expression</th><th>Head pose</th></tr></thead><tbody id="ptable"></tbody></table>
+   </div>
+   <div class="card"><div class="n">02 / landmarks</div><h4>478 points per face</h4>
+    <p>Google's MediaPipe Face Landmarker finds 478 points on each face, with an estimate of depth for each one. It also scores 52 expression channels, such as smile, squint, jaw open and brows up. Those scores sorted the photos from calmest to most expressive.</p>
+    <div class="facts"><div><b>9</b><small>photos</small></div><div><b>478</b><small>points each</small></div><div><b>52</b><small>expression scores</small></div></div>
+   </div>
+   <div class="card"><div class="n">03 / alignment</div><h4>Lining nine heads up in 3D</h4>
+    <p>Each photo is fitted to a shared reference using 31 points that hardly move with expression: forehead, nose bridge, eye corners and temples. The leftover rotation is that photo's head pose. Stable points agree to within about 2 mm across all nine photos.</p>
+    <div class="facts"><div><b>2.2 mm</b><small>stable spread</small></div><div><b>53°</b><small>max head tilt</small></div><div><b>34°</b><small>max turn</small></div></div>
+   </div>
+   <div class="card"><div class="n">04 / identity</div><h4>An average resting face</h4>
+    <p>Taking the median across all nine photos sets the parts that don't change with expression. Using several views gives a much better estimate of depth than any single photo. The mouth, eyes, brows and cheeks come from the two calmest photos, weighted 70/30, so the bust rests near neutral.</p>
+   </div>
+   <div class="card"><div class="n">05 / blockout</div><h4>Generic head first</h4>
+    <p>The blockout uses the same distance-field method as the gecko: skull, face mass, jaw line, chin, nose, ears flared about 28° like his, neck and chest. A thin slit is cut along his measured lip line, opening into a mouth cavity behind it, so the jaw can open later.</p>
+   </div>
+   <div class="card"><div class="n">06 / fitting</div><h4>Grab, then remesh</h4>
+    <p>The 468 surface points become a continuous face surface, which fades out where the face turns sideways. Three Grab passes pull the generic blockout onto that surface region by region. A voxel remesh then evens out the stretched triangles, just as you'd do by hand in Blender.</p>
+    <div class="facts"><div><b><span id="res">3</span> mm</b><small>mean fit error</small></div><div><b>1.2 mm</b><small>remesh voxel</small></div><div><b id="vcount">240k</b><small>vertices</small></div></div>
+   </div>
+   <div class="card"><div class="n">07 / detail</div><h4>Brushes along landmark paths</h4>
+    <p>The detail strokes follow your own landmarks:</p>
+    <ul>
+     <li>creased lid margins</li>
+     <li>carved irises and drilled pupils, the classic bust treatment</li>
+     <li>crow's feet</li>
+     <li>nostrils and nose-wing grooves</li>
+     <li>the lip edge and philtrum</li>
+     <li>smile lines and cheek apples</li>
+     <li>chin crease and faint forehead lines</li>
+     <li>neck tendons and collarbones</li>
+     <li>a cropped-hair layer with 5,500 short grooves flowing from the crown</li>
+    </ul>
+   </div>
+   <div class="card"><div class="n">08 / expressions</div><h4>Shape keys from the photos</h4>
+    <p>For each expressive photo, the shape key is how far its points sit from the resting face. That movement is spread smoothly over the skin, with each lip following only its own lip's points so the mouth can open. A Blink key was added by hand, closing the upper lids onto the lower ones.</p>
+<pre>w = exp(-(d/σ)²)                 # σ ≈ 7.5 mm
+move(v) = Σ wᵢ·Δᵢ / Σ wᵢ           # Δᵢ = photo − rest
+lips: upper skin ← upper-lip points only</pre>
+   </div>
+   <div class="card"><div class="n">09 / movement</div><h4>A head bone</h4>
+    <p>A two-bone rig (bust and head) bends the upper neck. In the "Performance" action, each expression comes with the head pose from its photo, scaled to 55% so it stays gentle. In the browser, the same rotation runs in a vertex shader on top of the morph targets.</p>
+   </div>
+   <div class="card"><div class="n">10 / limits</div><h4>What it isn't</h4>
+    <p>This isn't a 3D scan. The photos are selfies, so wide-angle lenses enlarge the nose a little. Depth from a single photo is an estimate, and nine photos average it but can't measure it exactly. The sides and back of the head are sculpted rather than measured, and the hair is clay texture.</p>
+   </div>
+  </div>
+  <div class="dl">
+   <a href="sam/sam_bust.blend" download>sam_bust.blend<small>Blender 5.3 · keys + rig</small></a>
+   <a href="sam/sam_bust.glb" download>sam_bust.glb<small>3.2 MB · 9 morph targets</small></a>
+   <a href="sam/sculpt.mp4" download>sculpt.mp4<small>time-lapse + reel</small></a>
+   <a href="https://github.com/samuelling/scultera/tree/main/process/sam">sculpt scripts<small>align · sculpt · render</small></a>
+  </div>
+ </section>
+ <footer>Built with Blender 5.3 (bpy), MediaPipe Face Landmarker, NumPy, SciPy, scikit-image, glTF-Transform and three.js · <a href="./">the sad gecko</a> · <a href="https://linglab.org">linglab.org</a></footer>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+
+const TL = await fetch('sam/timeline.json').then(r=>r.json());
+const EX = TL.expressions;
+
+/* ---------------- time-lapse log ---------------- */
+const vid=document.getElementById('vid'), logEl=document.getElementById('log'), nowEl=document.getElementById('now'), badge=document.getElementById('badge');
+const fmt=t=>{const m=Math.floor(t/60),s=(t%60).toFixed(1).padStart(4,'0');return m+':'+s;};
+const PH={blockout:'Blockout',mesh:'Mesh',fit:'Fit to the photos',detail:'Detail strokes',finish:'Finish',expression:'Expressions + head poses'};
+let lastPh=null; const items=[];
+TL.entries.forEach((e,i)=>{
+ if(e.phase!==lastPh){const h=document.createElement('li');h.className='ph';h.textContent='— '+(PH[e.phase]||e.phase);logEl.appendChild(h);lastPh=e.phase;}
+ const li=document.createElement('li');
+ const ps=Object.entries(e.params||{}).slice(0,3).map(([k,v])=>k.replace(/_/g,' ')+' '+v).join(' · ');
+ li.innerHTML=`<span class="t">${fmt(e.t)}</span><span><span class="tool">${e.tool}</span> · <span class="tgt">${e.target}</span><span class="p">${e.note}${ps?' · '+ps:''}</span></span>`;
+ li.onclick=()=>{vid.currentTime=e.t+0.01;vid.play();};
+ logEl.appendChild(li);items.push(li);
+});
+document.getElementById('count').textContent=TL.entries.length;
+let follow=true;const fb=document.getElementById('follow');fb.onclick=()=>{follow=!follow;fb.setAttribute('aria-pressed',follow);};
+let cur=-1;
+function sync(){
+ const t=vid.currentTime;let i=0;
+ for(let k=0;k<TL.entries.length;k++){if(TL.entries[k].t<=t+1e-3)i=k;else break;}
+ if(i!==cur){
+  items.forEach((li,k)=>{li.classList.toggle('on',k===i);li.classList.toggle('past',k<i);});
+  const e=TL.entries[i];badge.textContent=PH[e.phase]||e.phase;
+  nowEl.innerHTML=`<b>${e.tool} · ${e.target}</b> ${e.note}`;
+  if(follow){const li=items[i];const box=logEl;box.scrollTop=li.offsetTop-box.clientHeight/2+li.clientHeight/2;}
+  cur=i;
+ }
+}
+vid.addEventListener('timeupdate',sync);vid.addEventListener('seeked',sync);
+(function loop(){if(!vid.paused)sync();requestAnimationFrame(loop);})();
+
+/* ---------------- photo table ---------------- */
+const pt=document.getElementById('ptable');
+TL.photos.forEach(p=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${p.label}</td><td>${p.expr}</td><td class="m">${p.pose}</td>`;pt.appendChild(tr);});
+document.getElementById('res').textContent=TL.fit.mean_mm.toFixed(1);
+document.getElementById('vcount').textContent=Math.round(TL.fit.verts/1000)+'k';
+
+/* ---------------- live bust ---------------- */
+const canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.AgXToneMapping;renderer.toneMappingExposure=1.05;
+const scene=new THREE.Scene();
+const pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromScene(new RoomEnvironment(),0.04).texture;scene.environmentIntensity=0.45;
+const camera=new THREE.PerspectiveCamera(30,1,0.01,20);
+camera.position.set(-0.32,0.06,0.78);
+const controls=new OrbitControls(camera,canvas);controls.target.set(0,-0.03,-0.02);controls.enableDamping=true;controls.minDistance=0.25;controls.maxDistance=2.2;
+const key=new THREE.DirectionalLight(0xfff0dc,2.4);key.position.set(-0.7,0.7,0.8);scene.add(key);
+const rim=new THREE.DirectionalLight(0xfff4e6,1.6);rim.position.set(0.4,0.5,-0.9);scene.add(rim);
+const fill=new THREE.DirectionalLight(0xdbe6ff,0.55);fill.position.set(0.8,0.0,0.6);scene.add(fill);
+function resize(){const r=canvas.parentElement.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();}
+addEventListener('resize',resize);resize();
+
+const U={q:{value:new THREE.Vector4(0,0,0,1)}};const PIVOT=new THREE.Vector3(0,-0.10,-0.06);
+function patch(mat,pivLocal){
+ mat.onBeforeCompile=sh=>{
+  sh.uniforms.uHeadQ=U.q;sh.uniforms.uPivot={value:pivLocal};
+  sh.vertexShader=sh.vertexShader.replace('#include <common>',`#include <common>
+attribute float headW; uniform vec4 uHeadQ; uniform vec3 uPivot;
+vec3 qrot(vec4 q, vec3 v){ return v + 2.0*cross(q.xyz, cross(q.xyz, v) + q.w*v); }`)
+  .replace('#include <defaultnormal_vertex>',`objectNormal = normalize(mix(objectNormal, qrot(uHeadQ, objectNormal), headW));
+#include <defaultnormal_vertex>`)
+  .replace('#include <project_vertex>',`transformed = mix(transformed, qrot(uHeadQ, transformed - uPivot) + uPivot, headW);
+#include <project_vertex>`);
+ };
+ mat.needsUpdate=true;
+}
+const meshes=[];let names=[];
+const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
+loader.load('sam/sam_bust.glb',g=>{
+ g.scene.traverse(o=>{
+  if(!o.isMesh)return;
+  o.updateWorldMatrix(true,false);
+  const M=o.matrixWorld,inv=M.clone().invert(),pivLocal=PIVOT.clone().applyMatrix4(inv);
+  const pos=o.geometry.attributes.position,n=pos.count,w=new Float32Array(n),v=new THREE.Vector3();
+  const isTeeth=o.name.toLowerCase().includes('teeth');
+  for(let i=0;i<n;i++){v.fromBufferAttribute(pos,i).applyMatrix4(M);w[i]=isTeeth?1:Math.pow(Math.min(1,Math.max(0,(v.y+0.16)/0.10)),1.5);}
+  o.geometry.setAttribute('headW',new THREE.BufferAttribute(w,1));
+  const mats=Array.isArray(o.material)?o.material:[o.material];
+  mats.forEach(m=>{
+   if(m.name==='Clay'){m.color.setRGB(0.50,0.41,0.34);m.roughness=0.62;m.metalness=0;}
+   if(m.name.startsWith('Mouth')){m.color.setRGB(0.03,0.012,0.012);m.roughness=0.9;m.envMapIntensity=0.2;}
+   patch(m,pivLocal);
+  });
+  o.frustumCulled=false;meshes.push(o);
+  if(!names.length&&o.morphTargetDictionary)names=Object.keys(o.morphTargetDictionary).sort((a,b)=>o.morphTargetDictionary[a]-o.morphTargetDictionary[b]);
+ });
+ scene.add(g.scene);
+ const l=document.getElementById('load');l.style.opacity=0;setTimeout(()=>l.remove(),600);
+ buildUI();
+},undefined,e=>{document.getElementById('load').textContent='could not load the bust: '+e.message;});
+
+const W={};const target={};const HP={turn:0,tilt:0,nod:0};const HT={turn:0,tilt:0,nod:0};
+function setMorph(name,v){meshes.forEach(m=>{const i=m.morphTargetDictionary?.[name];if(i!==undefined)m.morphTargetInfluences[i]=v;});}
+const sliders={};
+function buildUI(){
+ const sd=document.getElementById('sliders');
+ names.forEach(nm=>{W[nm]=0;target[nm]=0;
+  const d=document.createElement('label');d.className='sl';
+  d.innerHTML=`<span>${nm}</span><input type="range" min="0" max="1" step="0.01" value="0" aria-label="${nm}"><output>0.00</output>`;
+  const inp=d.querySelector('input'),out=d.querySelector('output');
+  inp.oninput=()=>{stopPerform();target[nm]=+inp.value;out.textContent=(+inp.value).toFixed(2);say('Mixing','your own blend');};
+  sliders[nm]={inp,out};sd.appendChild(d);
+ });
+ const hd=document.getElementById('head');
+ [['turn',-35,35],['tilt',-30,30],['nod',-20,20]].forEach(([k,a,b])=>{
+  const d=document.createElement('label');d.className='sl';
+  d.innerHTML=`<span>${k}</span><input type="range" min="${a}" max="${b}" step="0.5" value="0" aria-label="head ${k}"><output>0°</output>`;
+  const inp=d.querySelector('input'),out=d.querySelector('output');
+  inp.oninput=()=>{stopPerform();HT[k]=+inp.value;out.textContent=inp.value+'°';};
+  sliders['h_'+k]={inp,out};hd.appendChild(d);
+ });
+ const ch=document.getElementById('chips');
+ EX.filter(e=>e.photo).forEach(e=>{const b=document.createElement('button');b.textContent=e.name;b.title=e.note;
+  b.onclick=()=>{stopPerform();pose(e);};ch.appendChild(b);});
+}
+function pose(e,strength=1){
+ names.forEach(n=>target[n]=0);
+ Object.entries(e.weights).forEach(([k,v])=>target[k]=v*strength);
+ HT.turn=e.pose[2];HT.tilt=e.pose[1];HT.nod=e.pose[0];
+ say(e.name,e.note);
+ syncSliders();
+}
+function syncSliders(){names.forEach(n=>{if(sliders[n]){sliders[n].inp.value=target[n];sliders[n].out.textContent=target[n].toFixed(2);}});
+ ['turn','tilt','nod'].forEach(k=>{if(sliders['h_'+k]){sliders['h_'+k].inp.value=HT[k];sliders['h_'+k].out.textContent=Math.round(HT[k])+'°';}});}
+const sayEl=document.getElementById('say');function say(a,b){sayEl.innerHTML=`${a}<small>${b}</small>`;}
+document.getElementById('reset').onclick=()=>{stopPerform();names.forEach(n=>target[n]=0);HT.turn=HT.tilt=HT.nod=0;syncSliders();say('At rest','the averaged resting face');};
+let blinkT=-1;document.getElementById('blinkBtn').onclick=()=>{blinkT=0;};
+let performing=false,pIdx=0,pClock=0;const pb=document.getElementById('perform');
+pb.onclick=()=>{performing=!performing;pb.setAttribute('aria-pressed',performing);pb.textContent=performing?'Stop':'Perform';if(performing){pIdx=0;pClock=99;}};
+function stopPerform(){if(performing){performing=false;pb.setAttribute('aria-pressed','false');pb.textContent='Perform';}}
+const seq=EX.filter(e=>e.name!=='Blink');
+const clock=new THREE.Clock();let nextBlink=2.5,tAll=0;
+renderer.setAnimationLoop(()=>{
+ const dt=Math.min(0.05,clock.getDelta());tAll+=dt;
+ if(performing){pClock+=dt;if(pClock>2.4){pose(seq[pIdx%seq.length],1);pIdx++;pClock=0;}}
+ // idle life: tiny sway + automatic blinks
+ nextBlink-=dt;if(nextBlink<0){blinkT=0;nextBlink=2.5+Math.random()*3.5;}
+ let blink=0;if(blinkT>=0){blinkT+=dt;const u=blinkT/0.22;blink=u<0.5?u*2:Math.max(0,2-u*2);if(blinkT>0.22)blinkT=-1;}
+ const k=1-Math.exp(-dt*7);
+ names.forEach(n=>{W[n]+=(target[n]-W[n])*k;let v=W[n];if(n==='Blink')v=Math.min(1,v+blink*(1-v));setMorph(n,v);});
+ ['turn','tilt','nod'].forEach(a=>HP[a]+=(HT[a]-HP[a])*(1-Math.exp(-dt*4)));
+ const sway=performing?1:0.6;
+ const e=new THREE.Euler(THREE.MathUtils.degToRad(HP.nod+Math.sin(tAll*0.7)*0.8*sway),THREE.MathUtils.degToRad(HP.turn+Math.sin(tAll*0.43)*1.6*sway),THREE.MathUtils.degToRad(-HP.tilt+Math.sin(tAll*0.31)*0.9*sway),'YXZ');
+ const q=new THREE.Quaternion().setFromEuler(e);U.q.value.set(q.x,q.y,q.z,q.w);
+ controls.update();renderer.render(scene,camera);
+});
+</script>
+</body>
+</html>

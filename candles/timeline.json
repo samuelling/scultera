@@ -1,0 +1,363 @@
+{
+ "entries": [
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "dish",
+   "note": "shallow blue dish, slightly oval like the drawing",
+   "params": {},
+   "t": 0.0
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "dish rim",
+   "note": "raised outer rim",
+   "params": {},
+   "t": 0.6
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "dish inner ring",
+   "note": "the second ring drawn inside the rim",
+   "params": {},
+   "t": 1.2
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "short candle",
+   "note": "pillar, 5 cm wide, 7 cm tall",
+   "params": {},
+   "t": 1.8
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "slim candle",
+   "note": "pillar, 6 cm wide, 15 cm tall",
+   "params": {},
+   "t": 2.4
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "front candle",
+   "note": "pillar, 8 cm wide, 11 cm tall",
+   "params": {},
+   "t": 3.0
+  },
+  {
+   "phase": "blockout",
+   "tool": "Add",
+   "target": "tall candle",
+   "note": "pillar, 9 cm wide, 20 cm tall",
+   "params": {},
+   "t": 3.6
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "short candle pool",
+   "note": "scoop the melt pool out of the top",
+   "params": {},
+   "t": 4.2
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "slim candle pool",
+   "note": "scoop the melt pool out of the top",
+   "params": {},
+   "t": 4.8
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "front candle pool",
+   "note": "scoop the melt pool out of the top",
+   "params": {},
+   "t": 5.4
+  },
+  {
+   "phase": "blockout",
+   "tool": "Carve",
+   "target": "tall candle pool",
+   "note": "scoop the melt pool out of the top",
+   "params": {},
+   "t": 6.0
+  },
+  {
+   "phase": "mesh",
+   "tool": "Voxel remesh",
+   "target": "whole set",
+   "note": "marching cubes at 1.15 mm",
+   "params": {
+    "verts": 242444,
+    "tris": 484884
+   },
+   "t": 6.6
+  },
+  {
+   "phase": "sculpt",
+   "tool": "Smooth",
+   "target": "whole set",
+   "note": "relax voxel steps",
+   "params": {
+    "iterations": 2
+   },
+   "t": 7.0
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw + Grab",
+   "target": "short candle lip",
+   "note": "lumpy melted rim: some spots swell, some slump",
+   "params": {
+    "dabs": 22
+   },
+   "t": 7.4
+  },
+  {
+   "phase": "detail",
+   "tool": "Flatten + Crease",
+   "target": "short candle pool",
+   "note": "level the liquid pool, sharpen where it meets the wall",
+   "params": {
+    "radius_cm": 0.28
+   },
+   "t": 8.25
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw",
+   "target": "short candle drips",
+   "note": "wax runs down the side, beading at the end",
+   "params": {
+    "drips": 4
+   },
+   "t": 9.1
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "short candle wick",
+   "note": "drill the wick hole",
+   "params": {
+    "radius_cm": 0.22
+   },
+   "t": 9.95
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw + Grab",
+   "target": "slim candle lip",
+   "note": "lumpy melted rim: some spots swell, some slump",
+   "params": {
+    "dabs": 22
+   },
+   "t": 10.37
+  },
+  {
+   "phase": "detail",
+   "tool": "Flatten + Crease",
+   "target": "slim candle pool",
+   "note": "level the liquid pool, sharpen where it meets the wall",
+   "params": {
+    "radius_cm": 0.28
+   },
+   "t": 10.8
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw",
+   "target": "slim candle drips",
+   "note": "wax runs down the side, beading at the end",
+   "params": {
+    "drips": 2
+   },
+   "t": 11.65
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "slim candle wick",
+   "note": "drill the wick hole",
+   "params": {
+    "radius_cm": 0.22
+   },
+   "t": 12.5
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw + Grab",
+   "target": "front candle lip",
+   "note": "lumpy melted rim: some spots swell, some slump",
+   "params": {
+    "dabs": 22
+   },
+   "t": 12.92
+  },
+  {
+   "phase": "detail",
+   "tool": "Flatten + Crease",
+   "target": "front candle pool",
+   "note": "level the liquid pool, sharpen where it meets the wall",
+   "params": {
+    "radius_cm": 0.28
+   },
+   "t": 13.35
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw",
+   "target": "front candle drips",
+   "note": "wax runs down the side, beading at the end",
+   "params": {
+    "drips": 3
+   },
+   "t": 14.2
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "front candle wick",
+   "note": "drill the wick hole",
+   "params": {
+    "radius_cm": 0.22
+   },
+   "t": 15.05
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw + Grab",
+   "target": "tall candle lip",
+   "note": "lumpy melted rim: some spots swell, some slump",
+   "params": {
+    "dabs": 22
+   },
+   "t": 15.47
+  },
+  {
+   "phase": "detail",
+   "tool": "Flatten + Crease",
+   "target": "tall candle pool",
+   "note": "level the liquid pool, sharpen where it meets the wall",
+   "params": {
+    "radius_cm": 0.28
+   },
+   "t": 15.9
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw",
+   "target": "tall candle drips",
+   "note": "wax runs down the side, beading at the end",
+   "params": {
+    "drips": 4
+   },
+   "t": 16.75
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "tall candle wick",
+   "note": "drill the wick hole",
+   "params": {
+    "radius_cm": 0.22
+   },
+   "t": 17.6
+  },
+  {
+   "phase": "detail",
+   "tool": "Draw (texture)",
+   "target": "candle walls",
+   "note": "faint vertical wax streaks, echoing the pencil hatching",
+   "params": {
+    "depth_mm": 0.12
+   },
+   "t": 18.02
+  },
+  {
+   "phase": "detail",
+   "tool": "Crease",
+   "target": "dish",
+   "note": "two grooves between the rims",
+   "params": {
+    "grooves": 2
+   },
+   "t": 18.45
+  },
+  {
+   "phase": "finish",
+   "tool": "Smooth",
+   "target": "whole set",
+   "note": "one light polish",
+   "params": {
+    "strength": 0.15
+   },
+   "t": 19.3
+  },
+  {
+   "phase": "light",
+   "tool": "Material",
+   "target": "clay",
+   "note": "the finished sculpt, still in grey clay",
+   "params": {},
+   "t": 20.3
+  },
+  {
+   "phase": "light",
+   "tool": "Material",
+   "target": "wax + glaze",
+   "note": "warm translucent wax, blue glazed dish",
+   "params": {
+    "wax_subsurface": 0.55
+   },
+   "t": 21.5
+  },
+  {
+   "phase": "light",
+   "tool": "Light",
+   "target": "flames + smoke",
+   "note": "wicks, glowing flames, and smoke ribbons like the pencil lines",
+   "params": {
+    "flames": 4
+   },
+   "t": 23.1
+  }
+ ],
+ "duration": 25.3,
+ "candles": [
+  {
+   "name": "short candle",
+   "x": -9.0,
+   "y": 2.4,
+   "r": 2.7,
+   "h": 7.2
+  },
+  {
+   "name": "slim candle",
+   "x": -4.4,
+   "y": 5.2,
+   "r": 3.0,
+   "h": 15.0
+  },
+  {
+   "name": "front candle",
+   "x": 0.6,
+   "y": -1.8,
+   "r": 4.1,
+   "h": 11.0
+  },
+  {
+   "name": "tall candle",
+   "x": 7.2,
+   "y": 4.2,
+   "r": 4.3,
+   "h": 19.5
+  }
+ ],
+ "verts": 242444
+}
