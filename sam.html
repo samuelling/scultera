@@ -123,6 +123,7 @@ section.take2{margin:90px 0 0;padding-top:40px;border-top:2px solid var(--ink)}
   <h1>Sam, in clay, from nine photos</h1>
   <p class="lede">A Blender bust built from nine photos in Sam's own library. The shape is measured from his face across all nine, and the expressions and head movements come from those same photos. Watch every brush stroke build the head below, then make faces with the finished sculpt.</p>
   <p class="t2link"><a href="#take2"><b>Take 2 ↓</b> Take 1 came out comically bad, so take 2 starts over from 12 seconds of video: measured, sculpted, painted, and replaying the clip.</a></p>
+  <p class="t2link" style="margin-top:8px"><a href="#take3"><b>Take 3 ↓</b> Then a 47-second clip turning all the way around in a chair: the head carved from its outline in 745 frames.</a></p>
  </section>
 
  <div class="tl">
@@ -319,6 +320,88 @@ depth ×1.15  →  1.54 px</pre>
    </div>
   </section>
  </section>
+
+ <section class="take2" id="take3">
+  <div class="kicker">Sculpt 02 · take 3 · all the way around</div>
+  <h2 class="big">Sam, take 3: turning in a chair</h2>
+  <p class="lede">Take 2 still looked off, because a 12-second selfie only shows about 21° of turn. Most of its depth came from the tracker's built-in idea of a face. Take 3 uses a 47-second clip with the phone propped about 80 cm away while Sam spins in a chair, nods and looks up. Now the head's outline is seen from nearly every side. Like a cookie cutter pressed in from 745 directions, those outlines carve the head out of a block. The tracked face then presses its hollows into the carve: eye sockets, lips, the wings of the nose.</p>
+  <div class="cmp">
+   <figure><img src="sam/take2/compare_paint.jpg" alt="Take 2 painted bust" loading="lazy"><figcaption><b>Take 2</b> · 12 s selfie</figcaption></figure>
+   <figure><img src="sam/take3/compare_clay.jpg" alt="Take 3 in clay: carved from the turning clip" loading="lazy"><figcaption><b>Take 3</b> · clay, carved from 745 outlines</figcaption></figure>
+   <figure><img src="sam/take3/compare_paint.jpg" alt="Take 3 painted with colour from all around" loading="lazy"><figcaption><b>Take 3</b> · painted from 249 frames</figcaption></figure>
+  </div>
+
+  <div class="tl">
+   <div class="vid">
+    <video id="vid3" src="sam/take3/sculpt.mp4" poster="sam/take3/poster.jpg" muted playsinline controls preload="metadata"></video>
+    <div class="badge" id="badge3">measure</div>
+    <div class="now" id="now3">Press play: one outline becomes a block, 745 become a head, then the face, the finish and the paint.</div>
+   </div>
+   <div class="console" aria-label="Take 3 sculpt log">
+    <header><span>take 3 log · <span id="count3">–</span> steps</span><button id="follow3" aria-pressed="true">follow</button></header>
+    <ol id="log3"></ol>
+   </div>
+  </div>
+  <p class="note">The clip itself isn't published here, only what was measured from it and the paint projected from it.</p>
+
+  <section class="live">
+   <h2>Take 3, live</h2>
+   <p class="sub">The take-3 head, running take 2's 12-second talking clip. Both are tracked with the same 478 points, so any clip's motion drives any take. Orbit all the way round: the back of the head is real this time, at least in outline.</p>
+   <div class="stage">
+    <div class="view v2">
+     <canvas id="c3"></canvas>
+     <div class="say" id="say3">At rest<small>drag to orbit · scroll to zoom</small></div>
+     <div class="hint">right-drag to pan</div>
+     <div class="load" id="load3">loading take 3…</div>
+    </div>
+    <div class="panel">
+     <div class="row"><button class="primary" id="play3" aria-pressed="false">Play the clip</button><button id="rest3">Rest face</button>
+      <span class="seg"><button id="paintOn3" aria-pressed="true">Painted</button><button id="clayOn3" aria-pressed="false">Clay</button></span></div>
+     <div class="scrub"><span id="tcur3">0.0 s</span><input id="scrub3" type="range" min="0" max="357" step="1" value="0" aria-label="clip time"><span>11.9 s</span></div>
+     <h3>Moments from the clip</h3>
+     <div class="chips" id="chips3"></div>
+     <h3>Options</h3>
+     <div class="row"><button id="headOn3" aria-pressed="true">Head motion</button><button id="gazeOn3" aria-pressed="true">Eye motion</button><button id="slowOn3" aria-pressed="false">Half speed</button></div>
+    </div>
+   </div>
+  </section>
+
+  <section class="notes">
+   <div class="kicker">How take 3 was made</div>
+   <h2>Outline from every side, hollows from the face</h2>
+   <div class="grid">
+    <div class="card"><div class="n">01 / the clip</div><h4>47 seconds in a chair</h4>
+     <p>The phone sits still about 80 cm away while Sam spins, nods, looks up and yawns. The face is found in 871 of the 1,421 frames. The other 550 are the back of his head, where there is no face to track.</p>
+     <div class="facts"><div><b>1,421</b><small>frames</small></div><div><b>745</b><small>posed</small></div><div><b>±70°</b><small>turn · ±40° nod</small></div></div>
+    </div>
+    <div class="card"><div class="n">02 / depth, measured</div><h4>Real parallax this time</h4>
+     <p>With ±70° of turn, letting every tracked point's depth float is well posed: it moves each point by only 1.6 mm on average. The one-number depth test now picks ×1.10. In take 2, all the clip could do was confirm the tracker's own guess.</p>
+     <div class="facts"><div><b>2.9 px</b><small>pose error</small></div><div><b>1.1°</b><small>symmetry fix</small></div><div><b>±70°</b><small>parallax</small></div></div>
+    </div>
+    <div class="card"><div class="n">03 / carving</div><h4>A visual hull</h4>
+     <p>Each frame's outline, swept away from the camera, is a cone that the head must sit inside. Intersect 745 of them on a 2 mm grid and what's left is the head. Profiles cut the nose, lips and chin; nodding cuts the crown and the underside of the jaw. A voxel is removed only if more than three frames saw background through it, which absorbs small pose errors.</p>
+    </div>
+    <div class="card"><div class="n">04 / the back</div><h4>The one thing still guessed</h4>
+     <p>Without a face, the back views have no points to pose from. I tried two ways to recover their angles: matching outlines, and following hair texture from frame to frame. Neither held up. A head seen from behind is round enough that its outline hardly changes as it turns. So the back is an ellipsoid fitted to the carved sides and crown (4.5 mm rms), blended in behind the ears.</p>
+    </div>
+    <div class="card"><div class="n">05 / hollows</div><h4>Carve outside, face inside</h4>
+     <p>A visual hull can't see into hollows; the eye sockets and the groove between the lips are invisible to an outline. The tracked face can. So inside the face, the surface is the smaller of the two: the carve bounds the outside, the tracked points cut the hollows.</p>
+<pre>r(θ,φ) = min( r_face , r_carve )   # inside the face
+r(θ,φ) = r_carve                   # sides, crown
+r(θ,φ) = r_skull                   # back</pre>
+    </div>
+    <div class="card"><div class="n">06 / paint</div><h4>Colour from all around</h4>
+     <p>249 frames are projected onto the sculpt after posing it and matching each frame's expression. That covers 67% of the surface, compared with 31% in take 2. The room's tungsten light made everything orange, so the median skin colour is balanced back to a neutral skin tone.</p>
+     <div class="facts"><div><b>249</b><small>frames painted</small></div><div><b>67%</b><small>surface seen</small></div><div><b>92%</b><small>hairline agreement</small></div></div>
+    </div>
+   </div>
+   <div class="dl">
+    <a href="sam/take3/sam_take3.glb" download>sam_take3.glb<small>painted + clay · 13 morphs</small></a>
+    <a href="sam/take3/sculpt.mp4" download>sculpt.mp4<small>take-3 time-lapse</small></a>
+    <a href="https://github.com/samuelling/scultera/tree/main/process/sam3">take-3 scripts<small>track · carve · fit · paint</small></a>
+   </div>
+  </section>
+ </section>
  <footer>Built with Blender 5.3 (bpy), MediaPipe Face Landmarker, NumPy, SciPy, scikit-image, glTF-Transform and three.js · <a href="./">the sad gecko</a> · <a href="https://linglab.org">linglab.org</a></footer>
 </div>
 
@@ -364,6 +447,7 @@ function mountTL(sfx,TLd,PH){
 }
 mountTL('',TL,{blockout:'Blockout',mesh:'Mesh',fit:'Fit to the photos',detail:'Detail strokes',finish:'Finish',expression:'Expressions + head poses'});
 fetch('sam/take2/timeline.json').then(r=>r.json()).then(T2=>mountTL('2',T2,{measure:'Measure the video',blockout:'Blockout',detail:'Detail strokes',finish:'Finish',paint:'Paint from the clip',motion:'Motion from the clip'}));
+fetch('sam/take3/timeline.json').then(r=>r.json()).then(T3=>mountTL('3',T3,{measure:'Measure the video',carve:'Carve from outlines',blockout:'Blockout',detail:'Detail strokes',finish:'Finish',paint:'Paint from all sides',motion:'Motion'}));
 
 /* ---------------- photo table ---------------- */
 const pt=document.getElementById('ptable');
@@ -575,6 +659,111 @@ tog('headOn',v=>useHead=v);tog('gazeOn',v=>useGaze=v);tog('slowOn',v=>speed=v?0.
 function setPaint(p){document.getElementById('paintOn').setAttribute('aria-pressed',p);document.getElementById('clayOn').setAttribute('aria-pressed',!p);
  Object.values(parts).forEach(o=>{if(o.userData.paint){o.geometry.setAttribute('color',p?o.userData.paint:o.userData.clay);}});}
 document.getElementById('paintOn').onclick=()=>setPaint(true);document.getElementById('clayOn').onclick=()=>setPaint(false);
+let on=0;const clk=new THREE.Clock();
+R2.setAnimationLoop(()=>{
+ const dt=Math.min(0.05,clk.getDelta());
+ if(MOT){
+  if(playing){tF+=dt*30*speed;if(tF>=MOT.frames-1){tF=MOT.frames-1;playing=false;pb2.setAttribute('aria-pressed','false');pb2.textContent='Play again';}sc2.value=Math.round(tF);tc.textContent=(tF/30).toFixed(1)+' s';}
+  on+=((atRest?0:1)-on)*(1-Math.exp(-dt*8));
+  apply(sample(tF),on);
+ }
+ K2.update();R2.render(S2,C2);
+});
+}
+/* ---------------- take 3: live ---------------- */
+{
+const cv=document.getElementById('c3');
+const R2=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+R2.setPixelRatio(Math.min(devicePixelRatio,2));R2.toneMapping=THREE.AgXToneMapping;R2.toneMappingExposure=1.15;
+const S2=new THREE.Scene();
+const pm2=new THREE.PMREMGenerator(R2);S2.environment=pm2.fromScene(new RoomEnvironment(),0.04).texture;S2.environmentIntensity=0.55;
+const C2=new THREE.PerspectiveCamera(28,1,0.01,20);C2.position.set(-0.26,0.03,0.86);
+const K2=new OrbitControls(C2,cv);K2.target.set(0,-0.035,-0.05);K2.enableDamping=true;K2.minDistance=0.22;K2.maxDistance=2.0;
+const k1=new THREE.DirectionalLight(0xfff0dc,2.6);k1.position.set(-0.7,0.6,0.9);S2.add(k1);
+const k2=new THREE.DirectionalLight(0xffe8d0,1.4);k2.position.set(0.5,0.5,-0.9);S2.add(k2);
+const k3=new THREE.DirectionalLight(0xdbe6ff,0.6);k3.position.set(0.9,-0.1,0.5);S2.add(k3);
+function rs2(){const r=cv.parentElement.getBoundingClientRect();R2.setSize(r.width,r.height,false);C2.aspect=r.width/r.height;C2.updateProjectionMatrix();}
+addEventListener('resize',rs2);rs2();
+const PIV=new THREE.Vector3(0,-0.10,-0.08);
+const U2={q:{value:new THREE.Vector4(0,0,0,1)}};
+const parts={};let MOT=null,EYEC={};
+function patch2(mat,o,kind){
+ o.updateWorldMatrix(true,false);
+ const inv=o.matrixWorld.clone().invert();
+ const u={uHeadQ:U2.q,uPivot:{value:PIV.clone().applyMatrix4(inv)},uGazeQ:{value:new THREE.Vector4(0,0,0,1)},uEyeC:{value:new THREE.Vector3()},uJaw:{value:new THREE.Vector3()}};
+ if(kind==='eye')u.uEyeC.value.copy(EYEC[o.name]).applyMatrix4(inv);
+ o.userData.u=u;o.userData.inv=inv;
+ mat.onBeforeCompile=sh=>{
+  Object.assign(sh.uniforms,u);
+  sh.vertexShader=sh.vertexShader.replace('#include <common>',`#include <common>
+attribute float headW; uniform vec4 uHeadQ; uniform vec3 uPivot; uniform vec4 uGazeQ; uniform vec3 uEyeC; uniform vec3 uJaw;
+vec3 qrot(vec4 q, vec3 v){ return v + 2.0*cross(q.xyz, cross(q.xyz, v) + q.w*v); }`)
+  .replace('#include <defaultnormal_vertex>',`objectNormal = qrot(uGazeQ, objectNormal); objectNormal = normalize(mix(objectNormal, qrot(uHeadQ, objectNormal), headW));
+#include <defaultnormal_vertex>`)
+  .replace('#include <project_vertex>',`transformed = qrot(uGazeQ, transformed - uEyeC) + uEyeC + uJaw;
+transformed = mix(transformed, qrot(uHeadQ, transformed - uPivot) + uPivot, headW);
+#include <project_vertex>`);
+ };
+ mat.customProgramCacheKey=()=>'t3'+kind;mat.needsUpdate=true;
+}
+const ld=new GLTFLoader();ld.setMeshoptDecoder(MeshoptDecoder);
+Promise.all([new Promise((res,rej)=>ld.load('sam/take3/sam_take3.glb',res,undefined,rej)),fetch('sam/take3/motion.json').then(r=>r.json())]).then(([g,mot])=>{
+ MOT=mot;
+ const ex=g.parser.json.extras||{};EYEC.eyeR=new THREE.Vector3(...ex.eyeR_c);EYEC.eyeL=new THREE.Vector3(...ex.eyeL_c);
+ g.scene.traverse(o=>{
+  if(!o.isMesh)return;
+  const nm=o.name.startsWith('eye')?o.name.slice(0,4):o.name;
+  const kind=nm.startsWith('eye')?'eye':(nm==='teethL'?'jaw':'head');
+  o.updateWorldMatrix(true,false);
+  const M=o.matrixWorld,pos=o.geometry.attributes.position,n=pos.count,w=new Float32Array(n),v=new THREE.Vector3();
+  for(let i=0;i<n;i++){v.fromBufferAttribute(pos,i).applyMatrix4(M);{const x=Math.min(1,Math.max(0,(v.y+0.19)/0.07));w[i]=x*x*(3-2*x);}}
+  o.geometry.setAttribute('headW',new THREE.BufferAttribute(w,1));
+  const m=o.material.clone();o.material=m;m.metalness=0;
+  if(o.geometry.attributes.color){o.userData.paint=o.geometry.attributes.color;const ca=o.geometry.attributes._clay;
+   if(ca){const n=ca.count,f=new Float32Array(n*3);for(let i=0;i<n;i++){f[i*3]=ca.getX(i)*0.38;f[i*3+1]=ca.getY(i)*0.38;f[i*3+2]=ca.getZ(i)*0.38;}o.userData.clay=new THREE.BufferAttribute(f,3);}}
+  patch2(m,o,kind);o.frustumCulled=false;parts[nm==='eyeR'||nm==='eyeL'?nm:o.name]=o;
+ });
+ S2.add(g.scene);
+ const l=document.getElementById('load3');l.style.opacity=0;setTimeout(()=>l.remove(),600);
+ setFrame(36);say2('At rest','drag to orbit · scroll to zoom');rest();
+},e=>{document.getElementById('load3').textContent='could not load take 3: '+e.message;});
+const head=()=>parts.head;
+let tF=0,playing=false,speed=1,useHead=true,useGaze=true,atRest=true;
+const sc2=document.getElementById('scrub3'),tc=document.getElementById('tcur3');
+const sayE=document.getElementById('say3');function say2(a,b){sayE.innerHTML=`${a}<small>${b}</small>`;}
+const qa=new THREE.Quaternion(),qb=new THREE.Quaternion(),qx=new THREE.Quaternion(),qy=new THREE.Quaternion(),ID=new THREE.Quaternion();
+function gazeQ(yaw,pitch){qy.setFromAxisAngle(new THREE.Vector3(0,1,0),THREE.MathUtils.degToRad(yaw));qx.setFromAxisAngle(new THREE.Vector3(1,0,0),THREE.MathUtils.degToRad(-pitch));return new THREE.Quaternion().multiplyQuaternions(qx,qy);}
+const cur={coef:null,q:new THREE.Quaternion(),g:[[0,0],[0,0]],jaw:[0,0,0],on:0};
+function sample(f){
+ const n=MOT.frames,i0=Math.max(0,Math.min(n-1,Math.floor(f))),i1=Math.min(n-1,i0+1),a=f-i0;
+ const c0=MOT.coef[i0],c1=MOT.coef[i1];const coef=c0.map((x,k)=>x+(c1[k]-x)*a);
+ qa.fromArray(MOT.quat[i0]);qb.fromArray(MOT.quat[i1]);const q=qa.clone().slerp(qb,a);
+ const g=[0,1].map(e=>[0,1].map(k=>MOT.gaze[i0][e][k]+(MOT.gaze[i1][e][k]-MOT.gaze[i0][e][k])*a));
+ const jaw=[0,1,2].map(k=>MOT.jaw[i0][k]+(MOT.jaw[i1][k]-MOT.jaw[i0][k])*a);
+ return {coef,q,g,jaw};
+}
+function apply(st,on){
+ const h=head();if(!h)return;
+ const inf=h.morphTargetInfluences;inf[0]=on;for(let k=0;k<MOT.K;k++)inf[k+1]=(st.coef?st.coef[k]:0)*on;
+ const q=useHead&&on?st.q:ID;U2.q.value.set(q.x,q.y,q.z,q.w);
+ ['eyeR','eyeL'].forEach((e,i)=>{const o=parts[e];if(!o)return;const gg=useGaze&&on?st.g[i]:[0,0];const gq=gazeQ(gg[0],gg[1]);o.userData.u.uGazeQ.value.set(gq.x,gq.y,gq.z,gq.w);});
+ const tl=parts.teethL;if(tl){
+  const v=new THREE.Vector4(st.jaw[0]*on,st.jaw[1]*on,st.jaw[2]*on,0).applyMatrix4(tl.userData.inv);tl.userData.u.uJaw.value.set(v.x,v.y,v.z);}
+}
+function setFrame(f){tF=f;atRest=false;sc2.value=Math.round(f);tc.textContent=(f/30).toFixed(1)+' s';}
+function rest(){atRest=true;playing=false;pb2.setAttribute('aria-pressed','false');pb2.textContent='Play the clip';}
+const pb2=document.getElementById('play3');
+pb2.onclick=()=>{if(!MOT)return;playing=!playing;pb2.setAttribute('aria-pressed',playing);pb2.textContent=playing?'Pause':'Play the clip';if(playing){atRest=false;if(tF>=MOT.frames-1)tF=0;say2('Playing the clip','every frame as tracked from the video');}};
+document.getElementById('rest3').onclick=()=>{rest();say2('At rest','the averaged resting face');};
+sc2.oninput=()=>{if(!MOT)return;playing=false;pb2.setAttribute('aria-pressed','false');pb2.textContent='Play the clip';setFrame(+sc2.value);say2('Frame '+sc2.value,'scrubbing the clip');};
+const M2=[['Calm',36,'the calmest moment in the clip'],['Side-eye',79,'eyes hard to the side'],['Brows up',126,'inner brows raised'],['Laugh',201,'the biggest laugh'],['Mouth open',274,'mid-sentence, jaw dropped'],['Blink',303,'eyes closing'],['Grin',345,'the closing grin']];
+const ch2=document.getElementById('chips3');
+M2.forEach(([nm,f,note])=>{const b=document.createElement('button');b.textContent=nm;b.onclick=()=>{if(!MOT)return;playing=false;pb2.setAttribute('aria-pressed','false');pb2.textContent='Play the clip';setFrame(f);say2(nm,note+' · '+(f/30).toFixed(1)+' s');};ch2.appendChild(b);});
+function tog(id,fn){const b=document.getElementById(id);b.onclick=()=>{const v=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',v);fn(v);};}
+tog('headOn3',v=>useHead=v);tog('gazeOn3',v=>useGaze=v);tog('slowOn3',v=>speed=v?0.5:1);
+function setPaint(p){document.getElementById('paintOn3').setAttribute('aria-pressed',p);document.getElementById('clayOn3').setAttribute('aria-pressed',!p);
+ Object.values(parts).forEach(o=>{if(o.userData.paint){o.geometry.setAttribute('color',p?o.userData.paint:o.userData.clay);}});}
+document.getElementById('paintOn3').onclick=()=>setPaint(true);document.getElementById('clayOn3').onclick=()=>setPaint(false);
 let on=0;const clk=new THREE.Clock();
 R2.setAnimationLoop(()=>{
  const dt=Math.min(0.05,clk.getDelta());

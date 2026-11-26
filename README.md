@@ -43,3 +43,7 @@ A second bust of Sam built from one 12-second phone clip instead of nine photos.
 9. `export_glb.py` (then `gltf-transform meshopt`), `bl_timelapse.py`, `timeline2.py`
 
 The clip itself is not in the repo.
+
+## Sam, take 3 (`sam.html#take3`)
+
+Built from a 47-second clip turning a full circle in a chair. Scripts in `process/sam3/`: `track.py` → `shape.py` → `poses.py` (PnP, outlier flags) → `depthcheck.py` → `hull3.py` (visual hull from 745 posed frames) → `face_mesh.py` → `rmap.py` → `rmap_hull3.py` (radial carve map; fitted skull behind the ears) → `build3.py` → `finish.py` → `anim.py` (take-2 motion) → `paint.py` → `export_glb.py`, `bl_timelapse3.py`, `timeline3.py`. `silpose.py` and `odom.py` are the two attempts at posing the back-of-head frames; neither was used.
