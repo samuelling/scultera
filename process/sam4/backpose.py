@@ -5,7 +5,7 @@ import numpy as np, cv2, sys, json
 sys.path.insert(0,'proc'); from common import *
 from scipy import ndimage as ndi
 from scipy.spatial.transform import Rotation as Rot, Slerp
-good=sh['good']; idx=sh['idx']; Rg=sh['R'][good]; tg=sh['tr'][good]; fg=idx[good]
+good=GOOD; idx=sh['idx']; Rg=sh['R'][good]; tg=sh['tr'][good]; fg=idx[good]
 masks=np.load(B3+'masks.npy',mmap_mode='r'); N,H,W=masks.shape
 fin=np.load(B3+'finished.npz'); V=fin['v'].astype(float); rng=np.random.default_rng(0)
 Pm=toold(V[V[:,1]>-7.0]); Pm=Pm[rng.choice(len(Pm),30000,replace=False)]; c_head=Pm.mean(0)

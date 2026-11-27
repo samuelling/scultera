@@ -13,7 +13,7 @@ except FileNotFoundError: r0=sdf4.trace(D,parts=('head','face','neck','details')
 P0=C+r0[...,None]*D
 nrm=np.cross(np.gradient(P0,axis=1),np.gradient(P0,axis=0)); nrm/=np.maximum(np.linalg.norm(nrm,axis=-1,keepdims=True),1e-9); nrm*=np.sign((nrm*D).sum(-1,keepdims=True)+1e-9)
 p=np.load('poses4.npz'); R,tr,src=p['R'],p['tr'],p['src']; masks=np.load(B3+'masks.npy',mmap_mode='r')
-good=sh['good']; idx=sh['idx']; Dx=fc['D']; kof={int(t):k for k,t in enumerate(idx) if good[k]}
+good=GOOD; idx=sh['idx']; Dx=fc['D']; kof={int(t):k for k,t in enumerate(idx) if good[k]}
 # expression of a frame as a displacement of every texel (the same transfer the animation uses)
 fm=sdf4.fm; Tid=fm['Tid']; Bc=fm['B']; Fs=fm['Fs']; Ws=fm['Ws']; ins=Tid>=0
 dout,(ii,jj)=ndi.distance_transform_edt(~ins,return_indices=True); dec=np.exp(-((dout*sdf4.RES)/7.0)**2).astype(np.float32)

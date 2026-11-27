@@ -419,7 +419,7 @@ r(θ,φ) = r_skull                   # back</pre>
  <section class="take2" id="take4">
   <div class="kicker">Sculpt 02 · take 4 · same clip, new method</div>
   <h2 class="big">Sam, take 4: every frame, and a real texture</h2>
-  <p class="lede">Take 4 uses the same 47-second chair clip as take 3, and changes three things. First, all 1,421 frames now have a head pose, including the 676 where only the back of his head shows; take 3 gave up on those. Second, the paint is a proper texture built from 13 hand-picked sharp frames, registered to each other, instead of 249 blurry projections averaged together. That is like replacing a long-exposure photo with a careful panorama. Third, the sculpt replays the whole clip, chair spins included. Along the way one idea failed its own test and was thrown out; that is shown too.</p>
+  <p class="lede">Take 4 uses the same 47-second chair clip as take 3, and changes three things. First, all 1,421 frames now have a head pose, including the 640 where the face tracker had nothing to hold on to, mostly the back of his head; take 3 gave up on those. Second, the paint is a proper texture built from 13 hand-picked sharp frames, registered to each other, instead of 249 blurry projections averaged together. That is like replacing a long-exposure photo with a careful panorama. Third, the sculpt replays the whole clip, chair spins included. Along the way one idea failed its own test and was thrown out; that is shown too.</p>
   <div class="cmp">
    <figure><img src="sam/take3/compare_paint.jpg" alt="Take 3 painted bust" loading="lazy"><figcaption><b>Take 3</b> · 249 frames averaged</figcaption></figure>
    <figure><img src="sam/take4/compare_clay.jpg" alt="Take 4 in clay" loading="lazy"><figcaption><b>Take 4</b> · clay</figcaption></figure>
@@ -499,9 +499,11 @@ r(θ,φ) = r_skull                   # back</pre>
 <polyline class="slv" points="472.1,142.9 473.9,145.4 475.7,147.0 477.5,148.1 479.3,150.9 481.1,155.0 483.0,159.1 484.8,163.0 486.6,166.9 488.4,169.3 490.2,170.8 492.0,172.3 493.9,173.9 495.7,175.1 497.5,171.8 499.3,162.2 501.1,151.8 502.9,143.8 502.9,143.8"/>
 <polyline class="trk" points="502.9,143.8 503.5,141.4"/>
 <polyline class="slv" points="503.5,141.4 504.1,138.7"/>
-<polyline class="trk" points="504.1,138.7 506.0,130.7 507.8,127.0 509.6,124.2 511.4,121.5 513.2,118.3 515.0,114.9 516.9,111.7 518.7,109.1 520.5,106.6 522.3,103.1 524.1,98.3 525.9,92.8 527.7,89.8 527.7,89.8"/>
-<polyline class="slv" points="527.7,89.8 529.6,88.4 531.4,87.1 533.2,85.4 535.0,84.1 536.8,82.0 538.6,80.0 540.5,78.2 542.3,77.0 544.1,76.8 545.9,77.4 547.7,78.2 549.5,79.3 551.3,81.4 553.2,84.3 555.0,88.6 556.8,94.5 558.6,101.3 560.4,107.8 562.2,112.3 564.1,114.6 565.9,116.1 567.7,117.6 569.5,118.9 571.3,120.4 573.1,121.6 573.7,122.0"/>
-<polyline class="trk" points="573.7,122.0 575.6,123.4 577.4,123.3 579.2,122.9 581.0,122.1 582.8,120.3 584.6,118.9 586.5,118.5 588.3,118.0 590.1,117.5 591.9,117.4 593.1,117.6"/>
+<polyline class="trk" points="504.1,138.7 506.0,130.7 507.8,127.0 509.6,124.2 511.4,121.5 513.2,118.3 515.0,114.9 516.9,111.7 518.7,109.1 520.5,106.6 522.3,103.1 524.1,98.3 525.9,92.8 527.7,88.6 529.6,87.1 531.4,86.6 532.0,84.5"/>
+<polyline class="slv" points="532.0,84.5 532.6,83.8"/>
+<polyline class="trk" points="532.6,83.8 534.4,85.0 535.0,83.7"/>
+<polyline class="slv" points="535.0,83.7 536.8,81.6 538.6,79.8 540.5,78.3 542.3,76.9 544.1,75.9 545.9,75.7 547.7,76.0 549.5,76.7 551.3,78.6 553.2,81.4 555.0,86.4 556.8,93.3 558.6,97.8 558.6,97.8"/>
+<polyline class="trk" points="558.6,97.8 560.4,101.7 562.2,104.9 564.1,109.1 565.9,112.2 567.7,114.5 569.5,116.6 571.3,118.7 573.1,121.1 575.0,123.1 576.8,123.4 578.6,123.0 580.4,122.5 582.2,120.9 584.0,119.2 585.8,118.6 587.7,118.2 589.5,117.6 591.3,117.4 593.1,117.6 593.1,117.6"/>
 <polyline class="slv" points="593.1,117.6 594.9,118.1 596.7,118.8 598.6,119.7 600.4,120.6 602.2,120.9 604.0,121.1 604.0,121.1"/>
 <polyline class="trk" points="604.0,121.1 605.8,120.3 607.6,119.2 609.4,118.3 611.3,117.6 613.1,117.3 614.9,117.1 616.7,117.0 618.5,116.9 620.3,117.1 622.2,117.4 624.0,117.4 625.8,117.3 627.6,117.1 629.4,116.8 631.2,116.7 633.1,116.6 634.9,116.6 636.7,117.0 638.5,117.6 640.3,117.7 642.1,117.8 643.9,117.7 645.8,117.5 647.6,117.4 649.4,117.5 651.2,117.5 653.0,117.4 654.8,117.4 655.4,117.5"/>
 <polyline class="slv" points="655.4,117.5 657.3,117.6 659.1,117.7 660.9,117.8 662.7,117.6 662.7,117.6"/>
@@ -519,7 +521,7 @@ r(θ,φ) = r_skull                   # back</pre>
 <circle cx="819.5" cy="195.6" r="4" class="anc"/>
 <circle cx="831.6" cy="195.7" r="4" class="anc"/>
 </svg>
-    <p class="cap"><span class="k trk"></span>tracked from his face (745 frames) <span class="k slv"></span>solved from hair flow (676 frames) <span class="k anc"></span>seen from exactly behind</p>
+    <p class="cap"><span class="k trk"></span>tracked from his face (781 frames) <span class="k slv"></span>solved from hair flow (640 frames) <span class="k anc"></span>seen from exactly behind</p>
     <p>Summed flow drifts, so it needs pinning. The ends of each gap are pinned by the tracked poses either side. The middle is pinned by his ears: at the instant both ears show equal skin either side of the hair, the camera is exactly behind him, so the turn must be exactly 180°. That happens six times. On the clean chair turn, flow alone had said 109° and 121° where the ears say 117°.</p>
     <img class="fig" src="sam/take4/backcheck.jpg" alt="Six back-of-head frames with the sculpt's outline drawn over them in green" loading="lazy">
     <p class="cap">The check: the sculpt's outline (green) drawn over six of the solved frames. Ears and nape line up. These back views are the only video frames shown on this page.</p>
@@ -553,15 +555,15 @@ r(θ,φ) = r_skull                   # back</pre>
 
    <div class="grid">
     <div class="card"><div class="n">06 / motion</div><h4>Chair and neck, separated</h4>
-     <p>Each frame's head rotation is split into a turn about the chair's axis and whatever is left, which is the neck. The bust turns with the chair, up to about 200° each way; the neck bends up to 48°. The face moves through 14 motion shapes that keep 96.8% of the tracked motion. When he faces away, the face eases back to rest.</p>
-     <div class="facts"><div><b>±200°</b><small>chair turn</small></div><div><b>48°</b><small>neck bend</small></div><div><b>14</b><small>motion shapes</small></div></div>
+     <p>Each frame's head rotation is split into a turn about the chair's axis and whatever is left, which is the neck. The bust turns with the chair, up to about 200° each way; the neck bends up to 48°. The face moves through 16 motion shapes that keep 97.3% of the tracked motion. When he faces away, the face eases back to rest. One catch along the way: take 3's sanity check had thrown out the 36 widest frames of his yawn as tracking errors, because a jaw 4 cm open looked wrong to it. They are back in.</p>
+     <div class="facts"><div><b>±200°</b><small>chair turn</small></div><div><b>48°</b><small>neck bend</small></div><div><b>16</b><small>motion shapes</small></div></div>
     </div>
     <div class="card"><div class="n">07 / limits</div><h4>What is still wrong</h4>
      <p>The texture has the room's lighting baked in, so the bust is lit twice. The carve can only be too big, never too small, and fine relief (pores, folds) is not in the clay at all. The back-of-head poses are good to a few degrees, not better. The frontal key frame caught a slight frown, and that is now his resting face. Teeth are still generic.</p>
     </div>
    </div>
    <div class="dl">
-    <a href="sam/take4/sam_take4.glb" download>sam_take4.glb<small>clay + paint · 14 morphs</small></a>
+    <a href="sam/take4/sam_take4.glb" download>sam_take4.glb<small>clay + paint · 16 morphs</small></a>
     <a href="sam/take4/texture.jpg" download>texture.jpg<small>2048 × 1024 equirect</small></a>
     <a href="sam/take4/motion.json" download>motion.json<small>1,421 frames of curves</small></a>
     <a href="https://github.com/samuelling/scultera/tree/main/process/sam4">take-4 scripts<small>pose · carve · stereo · texture</small></a>
@@ -1003,7 +1005,7 @@ Promise.all([new Promise((res,rej)=>ld4.load('sam/take4/sam_take4.glb',res,undef
   const pos=o.geometry.attributes.position,n=pos.count,w=new Float32Array(n),v=new THREE.Vector3();
   for(let i=0;i<n;i++){v.fromBufferAttribute(pos,i).applyMatrix4(o.userData.rest);const x=Math.min(1,Math.max(0,(v.y+0.19)/0.07));w[i]=x*x*(3-2*x);}
   o.geometry.setAttribute('headW',new THREE.BufferAttribute(w,1));
-  const m=o.material.clone();o.material=m;m.metalness=0;
+  const m=o.material.clone();o.material=m;m.metalness=0;m.roughness=Math.max(m.roughness,0.8);
   const ca=o.geometry.attributes._clay;
   if(o.geometry.attributes.color&&ca){o.userData.paint=o.geometry.attributes.color;const f=new Float32Array(n*4);for(let i=0;i<n;i++){f[i*4]=ca.getX(i)*0.5;f[i*4+1]=ca.getY(i)*0.5;f[i*4+2]=ca.getZ(i)*0.5;f[i*4+3]=0;}o.userData.clay=new THREE.BufferAttribute(f,4);}
   patch(m,o,kind);o.frustumCulled=false;parts[o.name]=o;

@@ -2,7 +2,7 @@
 import numpy as np, json, struct, cv2, sys
 sys.path.insert(0,'proc'); import sdf4
 from scipy import sparse as sp, ndimage as ndi
-fin=np.load('finished4.npz'); an=np.load('anim4.npz'); Wv=sp.load_npz('Wv4.npz'); K=int(an['K']); CM=0.01
+fin=np.load('finished4.npz'); an=np.load('anim5.npz'); Wv=sp.load_npz('Wv4.npz'); K=int(an['K']); CM=0.01
 V=fin['v'].astype(np.float64); F=fin['f']; mat=fin['mat']
 tex=(cv2.imread('texture.jpg')[:,:,::-1]/255.0)**2.2; TH,TW=tex.shape[:2]; rr,az,el=sdf4.angles(V)
 P=np.stack([ndi.map_coordinates(tex[...,c],[(90-el)/180*TH-0.5,(az+180)/360*TW-0.5],order=1,mode='nearest') for c in range(3)],1)

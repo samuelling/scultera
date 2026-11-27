@@ -11,11 +11,17 @@ rr,az,el=sdf4.angles(V); gi=np.clip(np.round((el-sdf4.EL0)/sdf4.RES-0.5).astype(
 si,sj=ii[gi,gj],jj[gi,gj]; tri=Tid[si,sj]; bc=Bc[si,sj]; wgt=np.exp(-(dout[gi,gj]/np.where(el<-25,11.0,7.0))**2); wgt[mat==2]=0; wgt[tri<0]=0
 idxv=np.where(wgt>1e-3)[0]; Wsp=sp.csr_matrix(Ws); corner=Fs[tri[idxv]]
 Wv=sum(sp.csr_matrix((wgt[idxv]*bc[idxv,k],(idxv,corner[:,k])),shape=(len(V),Ws.shape[0]))@Wsp for k in range(3)).tocsr(); sp.save_npz('Wv4.npz',Wv)
-good=sh['good']; idx=sh['idx']; Dx=fc['D'][:,:468]; kg=np.where(good)[0]; tg=idx[kg]; N=1421
+good=GOOD; idx=sh['idx']; Dx=fc['D'][:,:468]; kg=np.where(good)[0]; tg=idx[kg]; N=1421
 X=Dx[kg].reshape(len(kg),-1); mu=np.median(X,0)*0     # rest face is the reference: no mean offset
-U,sv,Vt=np.linalg.svd(X,full_matrices=False); ev=np.cumsum(sv**2)/np.sum(sv**2); K=int(min(max(np.searchsorted(ev,0.97)+1,10),14)); cg=X@Vt[:K].T
+U,sv,Vt=np.linalg.svd(X,full_matrices=False); ev=np.cumsum(sv**2)/np.sum(sv**2); K=16; cg=X@Vt[:K].T
 print('moving verts %d; PCA: %d shapes keep %.1f%% of the tracked face motion'%((np.asarray(Wv.sum(1)).ravel()>0.01).sum(),K,100*ev[K-1]))
-T=np.arange(N); dist=np.abs(T[:,None]-tg[None,:]).min(1); fade=1-np.clip(dist/12,0,1)**2*(3-2*np.clip(dist/12,0,1))
+T=np.arange(N); dist=np.abs(T[:,None]-tg[None,:]).min(1); fade=np.ones(N); trk=dist==0; i=0
+while i<N:      # the face eases to rest only across long gaps (he faces away); short ones (mid-yawn) are bridged
+    if trk[i]: i+=1; continue
+    j=i
+    while j<N and not trk[j]: j+=1
+    if j-i>45: x=np.clip(np.minimum(np.arange(i,j)-i+1,j-np.arange(i,j))/12,0,1); fade[i:j]=1-x*x*(3-2*x)
+    i=j
 coef=np.stack([np.interp(T,tg,cg[:,k]) for k in range(K)],1)*fade[:,None]; coef=ndi.gaussian_filter1d(coef,0.8,axis=0)
 # head: chair turn (twist about the chair axis) + neck (the rest), relative to the frontal key frame
 p=np.load('poses4.npz'); R,n=p['R'],p['n']; tf=json.load(open('work/texture.json'))['front']; Rref=R[tf]; nh=Rref.T@n
@@ -33,6 +39,6 @@ for e,(iris,ck) in enumerate(((468,'eyeR_c'),(473,'eyeL_c'))):
     c=fin[ck]; v=S[iris]+fc['D'][kg,iris]-c; v/=np.linalg.norm(v,axis=1,keepdims=True); g=np.c_[np.degrees(np.arctan2(v[:,0],v[:,2])),np.degrees(np.arcsin(v[:,1]))]; g-=np.median(g,0)
     for c2 in range(2): gz[:,e,c2]=np.clip(ndi.gaussian_filter1d(np.interp(T,tg,g[:,c2])*fade,1.0),-28,28)
 jaw=np.stack([np.interp(T,tg,fc['D'][kg][:,[152,17,18]].mean(1)[:,c]) for c in range(3)],1)*fade[:,None]
-sd=coef.std(0); np.savez('anim4.npz',coef=coef,comps=Vt[:K].reshape(K,468,3),sd=sd,psi=psi_s,swing=swing,gaze=gz,jaw=jaw,K=K,nh=nh,ev=ev[:K],tracked=(dist==0))
+sd=coef.std(0); np.savez('anim5.npz',coef=coef,comps=Vt[:K].reshape(K,468,3),sd=sd,psi=psi_s,swing=swing,gaze=gz,jaw=jaw,K=K,nh=nh,ev=ev[:K],tracked=(dist==0))
 json.dump(dict(fps=30,frames=N,K=K,coef=np.round(coef/sd,2).tolist(),yaw=np.round(psi_s,1).tolist(),swing=np.round(swing,4).tolist(),gaze=np.round(gz,1).tolist(),jaw=np.round(jaw*0.01,5).tolist(),
     tracked=(dist==0).astype(int).tolist(),axis=[round(float(x),4) for x in nh],front=int(tf)),open('motion4.json','w'),separators=(',',':'))

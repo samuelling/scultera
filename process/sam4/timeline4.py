@@ -2,9 +2,9 @@
 import json, subprocess, glob, os
 def E(phase,tool,target,note,**p): return dict(phase=phase,tool=tool,target=target,note=note,params=p)
 seg=[
- ('s01_carve',4.2,[E('pose','Reuse','745 tracked frames','take 3\'s face tracking and per-frame head poses are kept as they were',frames=745),
+ ('s01_carve',4.2,[E('pose','Reuse','781 tracked frames','take 3\'s face tracking is kept; the 36 widest yawn frames its outlier test had thrown out are put back',frames=781),
    E('pose','Measure','chair axis','the first tracked turn (62°) gives the axis the chair spins about',tilt_deg=5),
-   E('pose','Flow','back-of-head turns','no face to track from behind, so the turn is read from how the hair moves frame to frame, separating turn from slide',frames=676),
+   E('pose','Flow','back-of-head turns','no face to track from behind, so the turn is read from how the hair moves frame to frame, separating turn from slide',frames=640),
    E('pose','Anchor','exact back views','when both ears show equal skin either side of the hair, he is seen from exactly behind: six such instants pin the turn',anchors=6),
    E('pose','Check','silhouettes','outline agreement is flat across flow scales (0.763 to 0.776), so the ears, not the outline, set the scale',scale=1.15),
    E('carve','Sharpen','masks','each frame\'s person mask snapped to image edges with a guided filter',radius_px=7),
@@ -33,8 +33,8 @@ for still,hold,es in seg:
 entries.append(dict(E('finish','Turntable','finished bust','a full turn of the painted bust'),t=round(T,2)))
 nt=len(glob.glob('tl/turn_*.png')); frames.append(('seq','tl/turn_%03d.png',nt,12)); T+=nt/12
 npf=len(glob.glob('tl/perf_*.png'))
-pe=[E('motion','Transfer','expressions','43,461 vertices follow the tracked points through the face map',moving_verts=43461),
-    E('motion','Compress','14 motion shapes','PCA of the tracked face motion keeps 96.8%',shapes=14),
+pe=[E('motion','Transfer','expressions','43,462 vertices follow the tracked points through the face map',moving_verts=43462),
+    E('motion','Compress','16 motion shapes','PCA of the tracked face motion keeps 97.3%',shapes=16),
     E('motion','Split','chair and neck','each frame\'s head rotation = a turn about the chair axis (up to ±200°) + what the neck did (up to 48°)',turn_deg=200),
     E('motion','Replay','the first 20 seconds','the sculpt performs the clip, spins included; the page plays all 47 seconds live')]
 for i,e in enumerate(pe): e['t']=round(T+i*(npf/10)/len(pe),2); entries.append(e)

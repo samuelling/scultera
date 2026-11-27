@@ -1,0 +1,292 @@
+{
+ "entries": [
+  {
+   "phase": "pose",
+   "tool": "Reuse",
+   "target": "781 tracked frames",
+   "note": "take 3's face tracking is kept; the 36 widest yawn frames its outlier test had thrown out are put back",
+   "params": {
+    "frames": 781
+   },
+   "t": 0.0
+  },
+  {
+   "phase": "pose",
+   "tool": "Measure",
+   "target": "chair axis",
+   "note": "the first tracked turn (62\u00b0) gives the axis the chair spins about",
+   "params": {
+    "tilt_deg": 5
+   },
+   "t": 0.6
+  },
+  {
+   "phase": "pose",
+   "tool": "Flow",
+   "target": "back-of-head turns",
+   "note": "no face to track from behind, so the turn is read from how the hair moves frame to frame, separating turn from slide",
+   "params": {
+    "frames": 640
+   },
+   "t": 1.2
+  },
+  {
+   "phase": "pose",
+   "tool": "Anchor",
+   "target": "exact back views",
+   "note": "when both ears show equal skin either side of the hair, he is seen from exactly behind: six such instants pin the turn",
+   "params": {
+    "anchors": 6
+   },
+   "t": 1.8
+  },
+  {
+   "phase": "pose",
+   "tool": "Check",
+   "target": "silhouettes",
+   "note": "outline agreement is flat across flow scales (0.763 to 0.776), so the ears, not the outline, set the scale",
+   "params": {
+    "scale": 1.15
+   },
+   "t": 2.4
+  },
+  {
+   "phase": "carve",
+   "tool": "Sharpen",
+   "target": "masks",
+   "note": "each frame's person mask snapped to image edges with a guided filter",
+   "params": {
+    "radius_px": 7
+   },
+   "t": 3.0
+  },
+  {
+   "phase": "carve",
+   "tool": "Intersect",
+   "target": "745 outlines",
+   "note": "the head carved on a 2 mm grid; back views would trim only 1% more, so they are left out",
+   "params": {
+    "voxel_mm": 2
+   },
+   "t": 3.6
+  },
+  {
+   "phase": "surface",
+   "tool": "Smooth",
+   "target": "scalp",
+   "note": "the carve is streaky on the scalp from pose noise: smoothed harder there than on the ears and nose",
+   "params": {
+    "sigma_mm": 7.5
+   },
+   "t": 4.2
+  },
+  {
+   "phase": "surface",
+   "tool": "Round",
+   "target": "back ridge",
+   "note": "\u00b170\u00b0 of tracked turn leaves a ridge of at most 6 mm down the back: rounded off",
+   "params": {
+    "max_mm": 6
+   },
+   "t": 4.87
+  },
+  {
+   "phase": "surface",
+   "tool": "Trim",
+   "target": "shoulders",
+   "note": "shoulders are not rigid with the head, so only the neck column is kept below the jaw",
+   "params": {
+    "cut_cm": -17
+   },
+   "t": 5.53
+  },
+  {
+   "phase": "surface",
+   "tool": "Conform",
+   "target": "face rim",
+   "note": "tracked face and carve disagree by -6 to +11 mm at the rim; the face is shifted to meet the carve there",
+   "params": {
+    "max_mm": 11
+   },
+   "t": 6.2
+  },
+  {
+   "phase": "surface",
+   "tool": "Cut",
+   "target": "hollows",
+   "note": "inside the face the tracked points cut what an outline cannot see: eye sockets, lips, nose wings",
+   "params": {
+    "verts": 29073
+   },
+   "t": 7.0
+  },
+  {
+   "phase": "experiment",
+   "tool": "Plane sweep",
+   "target": "stereo relief",
+   "note": "15 frame pairs 14\u00b0 apart, two independent sets: their relief maps agree at r = 0.39. Too noisy: not used",
+   "params": {
+    "r": 0.39,
+    "rms_mm": 1.3
+   },
+   "t": 7.8
+  },
+  {
+   "phase": "surface",
+   "tool": "Add",
+   "target": "neck + bust",
+   "note": "the carve's own neck runs into a bust block with trapezius slopes",
+   "params": {
+    "width_cm": 35
+   },
+   "t": 8.6
+  },
+  {
+   "phase": "detail",
+   "tool": "Carve",
+   "target": "nostrils, ears",
+   "note": "nostrils at the tracked points; a concha hollow where the carve put each ear",
+   "params": {
+    "depth_mm": 7
+   },
+   "t": 10.0
+  },
+  {
+   "phase": "detail",
+   "tool": "Pinch",
+   "target": "lip border",
+   "note": "vermilion edge along the 20-point lip line",
+   "params": {
+    "radius_mm": 0.6
+   },
+   "t": 10.7
+  },
+  {
+   "phase": "finish",
+   "tool": "Raise",
+   "target": "buzz cut",
+   "note": "hair raised 1.6 mm with stipple where the frames, and the paint's own darkness, say hair",
+   "params": {
+    "raise_mm": 1.6
+   },
+   "t": 11.4
+  },
+  {
+   "phase": "finish",
+   "tool": "Add",
+   "target": "shirt, teeth, eyes",
+   "note": "collar band and fabric layer; two tooth arches; 2.4 cm eyeballs behind the lids",
+   "params": {
+    "teeth": 24
+   },
+   "t": 12.3
+  },
+  {
+   "phase": "paint",
+   "tool": "Choose",
+   "target": "13 key frames",
+   "note": "slow, calm frames only: one frontal, four sides, below, above, six from behind",
+   "params": {
+    "frames": 13
+   },
+   "t": 13.2
+  },
+  {
+   "phase": "paint",
+   "tool": "Project",
+   "target": "each key frame",
+   "note": "the surface is given that frame's expression, then the frame is projected on, hidden texels skipped",
+   "params": {
+    "texels": "2048 x 1024"
+   },
+   "t": 14.0
+  },
+  {
+   "phase": "paint",
+   "tool": "Register",
+   "target": "view to view",
+   "note": "each new view is colour-matched to what is painted, then nudged into register by optical flow (6 to 10 texels)",
+   "params": {
+    "max_texels": 14
+   },
+   "t": 14.8
+  },
+  {
+   "phase": "paint",
+   "tool": "Blend",
+   "target": "two bands",
+   "note": "broad colour blended widely, fine detail taken from the single best view, so it stays sharp",
+   "params": {
+    "split_texels": 8
+   },
+   "t": 15.6
+  },
+  {
+   "phase": "paint",
+   "tool": "Close",
+   "target": "the loop at the back",
+   "note": "going round the head both ways leaves two exposures meeting at the back: cross-faded, hair tone evened",
+   "params": {
+    "seen": "79%"
+   },
+   "t": 16.4
+  },
+  {
+   "phase": "paint",
+   "tool": "Paint",
+   "target": "eyeballs",
+   "note": "irises and whites sampled from the frontal frame through its own eyelid outline",
+   "params": {
+    "frame": "45.4 s"
+   },
+   "t": 17.3
+  },
+  {
+   "phase": "finish",
+   "tool": "Turntable",
+   "target": "finished bust",
+   "note": "a full turn of the painted bust",
+   "params": {},
+   "t": 18.2
+  },
+  {
+   "phase": "motion",
+   "tool": "Transfer",
+   "target": "expressions",
+   "note": "43,462 vertices follow the tracked points through the face map",
+   "params": {
+    "moving_verts": 43462
+   },
+   "t": 22.2
+  },
+  {
+   "phase": "motion",
+   "tool": "Compress",
+   "target": "16 motion shapes",
+   "note": "PCA of the tracked face motion keeps 97.3%",
+   "params": {
+    "shapes": 16
+   },
+   "t": 27.2
+  },
+  {
+   "phase": "motion",
+   "tool": "Split",
+   "target": "chair and neck",
+   "note": "each frame's head rotation = a turn about the chair axis (up to \u00b1200\u00b0) + what the neck did (up to 48\u00b0)",
+   "params": {
+    "turn_deg": 200
+   },
+   "t": 32.2
+  },
+  {
+   "phase": "motion",
+   "tool": "Replay",
+   "target": "the first 20 seconds",
+   "note": "the sculpt performs the clip, spins included; the page plays all 47 seconds live",
+   "params": {},
+   "t": 37.2
+  }
+ ],
+ "duration": 42.2
+}
