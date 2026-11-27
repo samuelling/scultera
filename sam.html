@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scultera: Sam, in clay</title>
-<meta name="description" content="Two busts of Sam sculpted in Blender: take 1 from nine photos, take 2 from a 12-second video, painted from the clip and replaying it live.">
+<meta name="description" content="Four busts of Sam sculpted in Blender, from nine photos to a 47-second chair-spin clip: carved from outlines, textured from key frames, and replaying the clip live.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -83,6 +83,18 @@ pre{background:var(--dark);color:#efe6d8;border-radius:10px;padding:12px 14px;ov
 .dl a small{color:var(--muted);font:400 12px "JetBrains Mono",monospace}
 footer{margin:60px 0 50px;font-size:13px;color:var(--muted)}
 
+
+.card.wide{margin:0 0 14px}
+.fig{width:100%;border-radius:10px;display:block;margin:12px 0 6px;background:#2a2621}
+.cap{font-size:13px;line-height:1.5;color:var(--muted);margin:4px 0 12px}
+.cap .k{display:inline-block;width:18px;height:3px;vertical-align:middle;margin:0 6px 0 0}
+.cap .k.slv,.cap .k.anc{margin-left:14px}
+.cap .k.trk{background:var(--ink)}.cap .k.slv{background:var(--accent)}.cap .k.anc{width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid var(--accent)}
+svg.yaw{width:100%;height:auto;display:block;margin:10px 0 4px}
+.yaw .g{stroke:var(--line);stroke-width:1}.yaw .g.z{stroke:#b9b0a2}
+.yaw .ax{font:10px "JetBrains Mono",monospace;fill:var(--muted)}
+.yaw polyline{fill:none;stroke-width:2;stroke-linejoin:round}.yaw .trk{stroke:var(--ink)}.yaw .slv{stroke:var(--accent)}
+.yaw .anc{fill:#fff;stroke:var(--accent);stroke-width:2}
 .t2link{margin:18px 0 0}
 .t2link a{display:inline-flex;gap:10px;align-items:baseline;background:var(--dark);color:#efe6d8;text-decoration:none;padding:10px 16px;border-radius:12px;font-size:14.5px;max-width:760px}
 .t2link a b{color:#f4b46e;font-weight:600;white-space:nowrap}
@@ -123,6 +135,7 @@ section.take2{margin:90px 0 0;padding-top:40px;border-top:2px solid var(--ink)}
   <h1>Sam, in clay, from nine photos</h1>
   <p class="lede">A Blender bust built from nine photos in Sam's own library. The shape is measured from his face across all nine, and the expressions and head movements come from those same photos. Watch every brush stroke build the head below, then make faces with the finished sculpt.</p>
   <p class="t2link"><a href="#take2"><b>Take 2 ↓</b> Take 1 came out comically bad, so take 2 starts over from 12 seconds of video: measured, sculpted, painted, and replaying the clip.</a></p>
+  <p class="t2link" style="margin-top:8px"><a href="#take4"><b>Take 4 ↓</b> Same clip, new method: every frame posed, a registered texture, and the sculpt replaying all 47 seconds, chair spins included.</a></p>
   <p class="t2link" style="margin-top:8px"><a href="#take3"><b>Take 3 ↓</b> Then a 47-second clip turning all the way around in a chair: the head carved from its outline in 745 frames.</a></p>
  </section>
 
@@ -402,6 +415,159 @@ r(θ,φ) = r_skull                   # back</pre>
    </div>
   </section>
  </section>
+
+ <section class="take2" id="take4">
+  <div class="kicker">Sculpt 02 · take 4 · same clip, new method</div>
+  <h2 class="big">Sam, take 4: every frame, and a real texture</h2>
+  <p class="lede">Take 4 uses the same 47-second chair clip as take 3, and changes three things. First, all 1,421 frames now have a head pose, including the 676 where only the back of his head shows; take 3 gave up on those. Second, the paint is a proper texture built from 13 hand-picked sharp frames, registered to each other, instead of 249 blurry projections averaged together. That is like replacing a long-exposure photo with a careful panorama. Third, the sculpt replays the whole clip, chair spins included. Along the way one idea failed its own test and was thrown out; that is shown too.</p>
+  <div class="cmp">
+   <figure><img src="sam/take3/compare_paint.jpg" alt="Take 3 painted bust" loading="lazy"><figcaption><b>Take 3</b> · 249 frames averaged</figcaption></figure>
+   <figure><img src="sam/take4/compare_clay.jpg" alt="Take 4 in clay" loading="lazy"><figcaption><b>Take 4</b> · clay</figcaption></figure>
+   <figure><img src="sam/take4/compare_paint.jpg" alt="Take 4 with its registered texture" loading="lazy"><figcaption><b>Take 4</b> · texture from 13 key frames</figcaption></figure>
+  </div>
+
+  <div class="tl">
+   <div class="vid">
+    <video id="vid4" src="sam/take4/sculpt.mp4" poster="sam/take4/poster.jpg" muted playsinline controls preload="metadata"></video>
+    <div class="badge" id="badge4">pose</div>
+    <div class="now" id="now4">Press play: poses, carve, surface, finish, paint, then the first 20 seconds of the clip performed by the sculpt.</div>
+   </div>
+   <div class="console" aria-label="Take 4 sculpt log">
+    <header><span>take 4 log · <span id="count4">–</span> steps</span><button id="follow4" aria-pressed="true">follow</button></header>
+    <ol id="log4"></ol>
+   </div>
+  </div>
+
+  <section class="live">
+   <h2>Replay all 47 seconds</h2>
+   <p class="sub">The take-4 bust performing the clip it was made from: face, neck, eyes, and the chair turning under it. <b>Play</b> runs it in real time. The caption says whether each moment was tracked from his face or solved from the back of his head. You can still orbit while it plays.</p>
+   <div class="stage">
+    <div class="view v2">
+     <canvas id="c4"></canvas>
+     <div class="say" id="say4">At rest<small>drag to orbit · scroll to zoom</small></div>
+     <div class="hint">right-drag to pan</div>
+     <div class="load" id="load4">loading take 4…</div>
+    </div>
+    <div class="panel">
+     <div class="row"><button class="primary" id="play4" aria-pressed="false">Play the clip</button><button id="rest4">Rest face</button>
+      <span class="seg"><button id="paintOn4" aria-pressed="true">Painted</button><button id="clayOn4" aria-pressed="false">Clay</button></span></div>
+     <div class="scrub"><span id="tcur4">0.0 s</span><input id="scrub4" type="range" min="0" max="1420" step="1" value="0" aria-label="clip time"><span>47.3 s</span></div>
+     <h3>Moments from the clip</h3>
+     <div class="chips" id="chips4"></div>
+     <h3>Options</h3>
+     <div class="row"><button id="spinOn4" aria-pressed="true">Chair turn</button><button id="headOn4" aria-pressed="true">Neck</button><button id="gazeOn4" aria-pressed="true">Eyes</button><button id="slowOn4" aria-pressed="false">Half speed</button></div>
+     <p class="note" style="margin:4px 0 0">Turn "Chair turn" off to keep the bust facing you while the face and neck still perform.</p>
+    </div>
+   </div>
+  </section>
+
+  <section class="notes">
+   <div class="kicker">Work shown</div>
+   <h2>What was measured, what was checked, what failed</h2>
+
+   <div class="card wide"><div class="n">01 / a pose for every frame</div><h4>Reading the chair's turn from the back of a head</h4>
+    <p>With no face in view there are no points to track, and a head seen from behind is too round for its outline to say which way it points. Take 3 stalled here. Take 4 reads the turn from the hair: dense optical flow between neighbouring frames, fitted as "the whole head slid by this much, and turned about the chair's axis by this much". Those two look different, because a turn moves the middle of the head faster than its edges. Summing the turn frame by frame gives the orange stretches below.</p>
+    <svg viewBox="0 0 920 230" role="img" aria-label="Chair turn over the 47 seconds of the clip" class="yaw">
+<line x1="46" x2="906" y1="194.2" y2="194.2" class="g"/><text x="40" y="198.2" class="ax" text-anchor="end">-180°</text>
+<line x1="46" x2="906" y1="154.6" y2="154.6" class="g"/><text x="40" y="158.6" class="ax" text-anchor="end">-90°</text>
+<line x1="46" x2="906" y1="115.0" y2="115.0" class="g z"/><text x="40" y="119.0" class="ax" text-anchor="end">0°</text>
+<line x1="46" x2="906" y1="75.4" y2="75.4" class="g"/><text x="40" y="79.4" class="ax" text-anchor="end">90°</text>
+<line x1="46" x2="906" y1="35.8" y2="35.8" class="g"/><text x="40" y="39.8" class="ax" text-anchor="end">180°</text>
+<text x="46.0" y="224" class="ax" text-anchor="middle">0s</text>
+<text x="136.8" y="224" class="ax" text-anchor="middle">5s</text>
+<text x="227.6" y="224" class="ax" text-anchor="middle">10s</text>
+<text x="318.3" y="224" class="ax" text-anchor="middle">15s</text>
+<text x="409.1" y="224" class="ax" text-anchor="middle">20s</text>
+<text x="499.9" y="224" class="ax" text-anchor="middle">25s</text>
+<text x="590.7" y="224" class="ax" text-anchor="middle">30s</text>
+<text x="681.5" y="224" class="ax" text-anchor="middle">35s</text>
+<text x="772.2" y="224" class="ax" text-anchor="middle">40s</text>
+<text x="863.0" y="224" class="ax" text-anchor="middle">45s</text>
+<polyline class="trk" points="46.0,116.6 47.8,116.7 49.6,116.8 51.4,116.7 53.3,116.0 55.1,115.5 56.9,115.3 58.7,115.2 60.5,114.5 62.3,113.7 64.2,112.6 66.0,111.3 67.8,109.8 69.6,108.2 71.4,106.4 73.2,105.6 75.0,105.0 76.9,104.0 78.7,103.3 80.5,102.6 82.3,102.1 84.1,101.8 85.9,101.2 87.8,100.4 89.6,99.8 91.4,98.6 93.2,97.6 95.0,96.6 96.8,95.6 98.7,94.5 100.5,93.0 102.3,92.0 104.1,91.4 105.9,90.3 107.7,90.2 109.5,88.1 109.5,88.1"/>
+<polyline class="slv" points="109.5,88.1 111.4,86.0 113.2,84.0 115.0,81.8 116.8,79.4 118.6,77.1 120.4,75.0 122.3,72.9 124.1,70.4 125.9,67.9 127.7,65.3 129.5,62.8 131.3,60.8 133.1,59.2 135.0,57.9 136.8,56.9 138.6,56.1 140.4,55.6 142.2,54.8 144.0,53.6 145.9,52.1 147.7,50.6 149.5,48.8 151.3,47.4 153.1,45.8 154.9,44.1 156.8,42.3 158.6,40.0 160.4,37.2 162.2,34.8 164.0,33.1 165.8,32.4 167.6,31.5 169.5,30.4 171.3,29.3 173.1,28.5 174.9,28.2 176.7,28.6 178.5,29.4 180.4,30.5 182.2,31.7 184.0,34.0 185.8,37.8 187.6,41.0 189.4,43.2 191.2,45.0 193.1,46.8 194.9,48.8 196.7,51.1 198.5,54.0 200.3,56.5 202.1,58.0 204.0,59.9 205.8,62.2 207.6,64.3 209.4,66.6 211.2,68.6 213.0,70.0 214.9,71.4 216.7,73.7 218.5,76.4 220.3,78.8 222.1,81.1 223.9,84.1 225.7,86.8 226.4,87.8"/>
+<polyline class="trk" points="226.4,87.8 227.6,89.1"/>
+<polyline class="slv" points="227.6,89.1 229.4,88.9 231.2,89.1 231.2,89.1"/>
+<polyline class="trk" points="231.2,89.1 233.0,89.7 234.8,92.0 236.6,92.7 238.5,94.6 240.3,96.6 242.1,99.5 243.9,102.1 245.7,103.5 247.5,104.7 249.3,105.6 251.2,106.5 253.0,107.7 254.8,109.3 256.6,111.0 258.4,112.5 260.2,114.1 262.1,116.0 263.9,118.3 265.7,120.4 267.5,122.4 269.3,124.2 271.1,125.8 273.0,127.0 274.8,128.8 276.6,131.1 278.4,133.9 280.2,136.4 282.0,138.4 283.8,141.3 285.7,142.3 287.5,144.1 289.3,146.1 291.1,147.2 291.1,147.2"/>
+<polyline class="slv" points="291.1,147.2 292.9,147.9 292.9,147.9"/>
+<polyline class="trk" points="292.9,147.9 293.5,148.6"/>
+<polyline class="slv" points="293.5,148.6 295.3,151.1 297.2,153.7 299.0,154.7 300.8,153.8 302.6,153.5 304.4,153.6 306.2,153.9 308.1,154.4 309.9,154.4 311.7,155.1 313.5,157.1 315.3,159.2 317.1,159.8 318.9,160.2 320.8,160.7 322.6,161.7 324.4,162.5 326.2,163.3 328.0,165.1 329.8,167.3 331.7,169.9 333.5,171.6 335.3,172.6 337.1,173.2 338.9,173.7 340.7,174.2 342.6,174.7 344.4,175.4 346.2,176.1 348.0,176.3 349.8,176.3 351.6,176.6 353.4,177.0 355.3,177.3 357.1,177.1 358.9,175.6 360.7,172.6 362.5,169.8 364.3,167.2 366.2,164.4 368.0,160.4 369.8,156.7 371.6,154.4 373.4,152.7 375.2,150.4 377.0,147.9 378.9,145.9 378.9,145.9"/>
+<polyline class="trk" points="378.9,145.9 380.7,144.8 382.5,143.3 384.3,140.7 386.1,137.9 387.9,135.9 389.8,134.0 391.6,131.3 393.4,128.8 395.2,126.3 397.0,124.0 398.8,122.6 400.7,121.8 402.5,120.8 404.3,120.1 406.1,119.9 407.9,119.9 409.7,120.1 411.5,120.4 413.4,120.0 415.2,119.7 417.0,119.4 418.8,119.6 420.6,119.4 422.4,119.0 424.3,118.7 424.3,118.7"/>
+<polyline class="slv" points="424.3,118.7 426.1,118.5 427.9,118.3 429.7,117.8 431.5,117.2 433.3,116.7 435.1,116.6 437.0,116.9 438.8,117.2 438.8,117.2"/>
+<polyline class="trk" points="438.8,117.2 440.6,116.8 442.4,116.5 444.2,116.9 446.0,117.4 447.9,117.6 449.7,117.6 451.5,117.6 453.3,117.5 455.1,117.7 456.9,117.9 458.8,118.9 460.6,121.0 462.4,122.9 464.2,125.3 465.4,127.7"/>
+<polyline class="slv" points="465.4,127.7 467.2,131.9 469.0,135.9 470.9,140.1 471.5,141.6"/>
+<polyline class="trk" points="471.5,141.6 472.1,142.9"/>
+<polyline class="slv" points="472.1,142.9 473.9,145.4 475.7,147.0 477.5,148.1 479.3,150.9 481.1,155.0 483.0,159.1 484.8,163.0 486.6,166.9 488.4,169.3 490.2,170.8 492.0,172.3 493.9,173.9 495.7,175.1 497.5,171.8 499.3,162.2 501.1,151.8 502.9,143.8 502.9,143.8"/>
+<polyline class="trk" points="502.9,143.8 503.5,141.4"/>
+<polyline class="slv" points="503.5,141.4 504.1,138.7"/>
+<polyline class="trk" points="504.1,138.7 506.0,130.7 507.8,127.0 509.6,124.2 511.4,121.5 513.2,118.3 515.0,114.9 516.9,111.7 518.7,109.1 520.5,106.6 522.3,103.1 524.1,98.3 525.9,92.8 527.7,89.8 527.7,89.8"/>
+<polyline class="slv" points="527.7,89.8 529.6,88.4 531.4,87.1 533.2,85.4 535.0,84.1 536.8,82.0 538.6,80.0 540.5,78.2 542.3,77.0 544.1,76.8 545.9,77.4 547.7,78.2 549.5,79.3 551.3,81.4 553.2,84.3 555.0,88.6 556.8,94.5 558.6,101.3 560.4,107.8 562.2,112.3 564.1,114.6 565.9,116.1 567.7,117.6 569.5,118.9 571.3,120.4 573.1,121.6 573.7,122.0"/>
+<polyline class="trk" points="573.7,122.0 575.6,123.4 577.4,123.3 579.2,122.9 581.0,122.1 582.8,120.3 584.6,118.9 586.5,118.5 588.3,118.0 590.1,117.5 591.9,117.4 593.1,117.6"/>
+<polyline class="slv" points="593.1,117.6 594.9,118.1 596.7,118.8 598.6,119.7 600.4,120.6 602.2,120.9 604.0,121.1 604.0,121.1"/>
+<polyline class="trk" points="604.0,121.1 605.8,120.3 607.6,119.2 609.4,118.3 611.3,117.6 613.1,117.3 614.9,117.1 616.7,117.0 618.5,116.9 620.3,117.1 622.2,117.4 624.0,117.4 625.8,117.3 627.6,117.1 629.4,116.8 631.2,116.7 633.1,116.6 634.9,116.6 636.7,117.0 638.5,117.6 640.3,117.7 642.1,117.8 643.9,117.7 645.8,117.5 647.6,117.4 649.4,117.5 651.2,117.5 653.0,117.4 654.8,117.4 655.4,117.5"/>
+<polyline class="slv" points="655.4,117.5 657.3,117.6 659.1,117.7 660.9,117.8 662.7,117.6 662.7,117.6"/>
+<polyline class="trk" points="662.7,117.6 663.3,117.0"/>
+<polyline class="slv" points="663.3,117.0 664.5,114.8"/>
+<polyline class="trk" points="664.5,114.8 666.3,109.0 668.2,105.6 670.0,105.0 671.8,105.0 673.6,105.6 675.4,106.2 677.2,108.6 679.0,113.5 680.9,119.9 682.7,126.5 684.5,130.6 686.3,131.5 688.1,131.0 689.9,129.7 691.8,128.9 693.6,127.1 695.4,124.3 697.2,121.9 699.0,118.5 700.8,113.0 700.8,113.0"/>
+<polyline class="slv" points="700.8,113.0 702.7,107.9 702.7,107.9"/>
+<polyline class="trk" points="702.7,107.9 704.5,106.4 706.3,108.8 708.1,112.6 709.9,117.0 711.7,120.4 713.5,125.5 715.4,129.9 717.2,131.2 719.0,131.6 720.8,132.1 722.6,131.5 724.4,128.6 726.3,122.5 728.1,118.0 729.9,115.7 731.7,114.5 733.5,114.7 735.3,115.3 737.1,115.9 739.0,116.9 740.8,118.4 742.6,120.6 744.4,122.2 746.2,122.6 748.0,122.2 749.9,121.3 751.7,120.3 753.5,120.1 755.3,121.7 757.1,125.6 758.9,129.4 760.8,133.8 761.4,135.8"/>
+<polyline class="slv" points="761.4,135.8 763.2,142.9 765.0,149.4 766.8,153.8 768.6,157.7 770.4,162.5 772.2,167.1 774.1,169.9 775.9,173.2 777.7,175.4 779.5,176.7 781.3,179.0 783.1,180.7 785.0,181.7 786.8,182.5 788.6,183.5 790.4,183.9 792.2,185.9 794.0,190.8 795.9,194.2 797.7,195.5 799.5,195.6 801.3,195.6 803.1,194.7 804.9,193.5 806.7,192.9 808.6,193.0 810.4,193.4 812.2,193.9 814.0,194.9 815.8,195.6 817.6,195.7 819.5,195.6 821.3,196.3 823.1,198.3 824.9,202.1 826.7,204.7 828.5,204.9 830.3,201.2 832.2,193.0 834.0,186.3 835.8,180.2 837.6,173.8 839.4,165.4 841.2,153.6 843.1,143.1 843.7,139.7"/>
+<polyline class="trk" points="843.7,139.7 845.5,131.3 847.3,127.1 849.1,123.2 850.9,120.1 852.7,117.9 854.6,116.6 856.4,116.0 858.2,115.5 860.0,115.1 861.8,114.5 863.6,114.1 865.5,114.2 867.3,114.4 869.1,114.8 870.9,115.0 872.7,115.4 874.5,116.0 876.3,116.2 878.2,116.4 880.0,116.7 881.8,116.7 883.6,116.7 885.4,116.7 887.2,117.1 889.1,117.6 890.9,118.1 892.7,118.3 894.5,118.5 896.3,118.7 898.1,118.7 899.9,118.6 901.8,118.4 903.6,118.1 905.4,117.6 905.4,117.6"/>
+<circle cx="160.4" cy="37.2" r="4" class="anc"/>
+<circle cx="185.2" cy="36.5" r="4" class="anc"/>
+<circle cx="797.1" cy="195.3" r="4" class="anc"/>
+<circle cx="815.2" cy="195.4" r="4" class="anc"/>
+<circle cx="819.5" cy="195.6" r="4" class="anc"/>
+<circle cx="831.6" cy="195.7" r="4" class="anc"/>
+</svg>
+    <p class="cap"><span class="k trk"></span>tracked from his face (745 frames) <span class="k slv"></span>solved from hair flow (676 frames) <span class="k anc"></span>seen from exactly behind</p>
+    <p>Summed flow drifts, so it needs pinning. The ends of each gap are pinned by the tracked poses either side. The middle is pinned by his ears: at the instant both ears show equal skin either side of the hair, the camera is exactly behind him, so the turn must be exactly 180°. That happens six times. On the clean chair turn, flow alone had said 109° and 121° where the ears say 117°.</p>
+    <img class="fig" src="sam/take4/backcheck.jpg" alt="Six back-of-head frames with the sculpt's outline drawn over them in green" loading="lazy">
+    <p class="cap">The check: the sculpt's outline (green) drawn over six of the solved frames. Ears and nape line up. These back views are the only video frames shown on this page.</p>
+    <div class="facts"><div><b>1,421</b><small>frames posed</small></div><div><b>5°</b><small>chair axis tilt</small></div><div><b>6</b><small>ear anchors</small></div><div><b>0.763–0.776</b><small>outline score, any scale</small></div></div>
+    <p class="cap">That last number is why the outline could not be used to calibrate: the silhouette agreement barely changes whether the flow is scaled by 0.7 or 1.5.</p>
+   </div>
+
+   <div class="grid">
+    <div class="card"><div class="n">02 / the carve</div><h4>Why the back views barely matter for shape</h4>
+     <p>I expected the newly solved back views to re-carve the back of the head. They removed 1% of the carve. The geometry explains it: frames turned up to ±70° already pin every surface that faces within 160° of the front, leaving a ridge of at most 6 mm down the centre of the back. So the back views are used for paint and motion, and the ridge is just rounded off.</p>
+     <div class="facts"><div><b>745</b><small>outlines carved</small></div><div><b>1%</b><small>trimmed by back views</small></div><div><b>≤ 6 mm</b><small>back ridge</small></div></div>
+    </div>
+    <div class="card"><div class="n">03 / one surface</div><h4>The carve itself, not a stand-in</h4>
+     <p>Take 3 swapped the back of the carve for a fitted ellipsoid and built the ears and neck by hand. Take 4 keeps the carve as the surface: its own ears, nape and neck. The tracked face and the carve disagreed at the face's rim by −6 to +11 mm, which showed as a mask-like step. The carve is the measured outline, so the face is shifted to meet it there and still cuts the hollows an outline can't see.</p>
+     <div class="facts"><div><b>−6…+11 mm</b><small>rim mismatch, fixed</small></div><div><b>202k</b><small>vertices</small></div></div>
+    </div>
+   </div>
+
+   <div class="card wide"><div class="n">04 / an experiment that failed</div><h4>Stereo relief: tested, rejected</h4>
+    <p>Could pairs of frames 14° apart measure the face's fine relief directly, the way two eyes do? I swept each point of the face through 25 depths and kept the depth where the two frames matched best. To check that the result was real, I solved it twice from two sets of frame pairs that share no frames. If the bumps are real, the two maps should agree.</p>
+    <img class="fig" src="sam/take4/stereo.jpg" alt="Two relief maps of the face from independent frame pairs; they look like unrelated noise" loading="lazy">
+    <p class="cap">Relief from set A (left) and set B (right), 15 pairs in all. They agree at r = 0.39, with about 1.3 mm of relief each: mostly noise. A first run scored 0.70, until I noticed two pairs sat in both sets. The phone's video compression smooths skin too much for this. Not used.</p>
+   </div>
+
+   <div class="card wide"><div class="n">05 / the texture</div><h4>Thirteen sharp frames instead of 249 blurry ones</h4>
+    <p>Take 3 averaged every frame's colours onto the clay, and each frame was off by a few millimetres, so the face came out soft. Take 4 picks 13 key frames where he is calm and nearly still: one frontal, four sides, one from below, one from above, six from behind. Each is projected onto the surface after giving it that frame's expression. Every later view is colour-matched to what is already painted and nudged into register by optical flow (6 to 10 texels, about 2 to 3 mm). Broad colour is blended widely; fine detail comes from the single best view.</p>
+    <img class="fig" src="sam/take4/texture_unwrap.jpg" alt="The face texture unwrapped flat: both ears visible at the edges, like a map projection of a head" loading="lazy">
+    <p class="cap">The front half of the texture, unwrapped like a map of the globe. Going round the head both ways left two different exposures meeting at the back; they are cross-faded there. The eyeballs are painted separately from the frontal frame, through its own eyelid outline.</p>
+    <div class="facts"><div><b>13</b><small>key frames</small></div><div><b>2048 × 1024</b><small>texels</small></div><div><b>79%</b><small>of the head seen</small></div><div><b>140 kB</b><small>as a JPEG</small></div></div>
+   </div>
+
+   <div class="grid">
+    <div class="card"><div class="n">06 / motion</div><h4>Chair and neck, separated</h4>
+     <p>Each frame's head rotation is split into a turn about the chair's axis and whatever is left, which is the neck. The bust turns with the chair, up to about 200° each way; the neck bends up to 48°. The face moves through 14 motion shapes that keep 96.8% of the tracked motion. When he faces away, the face eases back to rest.</p>
+     <div class="facts"><div><b>±200°</b><small>chair turn</small></div><div><b>48°</b><small>neck bend</small></div><div><b>14</b><small>motion shapes</small></div></div>
+    </div>
+    <div class="card"><div class="n">07 / limits</div><h4>What is still wrong</h4>
+     <p>The texture has the room's lighting baked in, so the bust is lit twice. The carve can only be too big, never too small, and fine relief (pores, folds) is not in the clay at all. The back-of-head poses are good to a few degrees, not better. The frontal key frame caught a slight frown, and that is now his resting face. Teeth are still generic.</p>
+    </div>
+   </div>
+   <div class="dl">
+    <a href="sam/take4/sam_take4.glb" download>sam_take4.glb<small>clay + paint · 14 morphs</small></a>
+    <a href="sam/take4/texture.jpg" download>texture.jpg<small>2048 × 1024 equirect</small></a>
+    <a href="sam/take4/motion.json" download>motion.json<small>1,421 frames of curves</small></a>
+    <a href="https://github.com/samuelling/scultera/tree/main/process/sam4">take-4 scripts<small>pose · carve · stereo · texture</small></a>
+   </div>
+  </section>
+ </section>
  <footer>Built with Blender 5.3 (bpy), MediaPipe Face Landmarker, NumPy, SciPy, scikit-image, glTF-Transform and three.js · <a href="./">the sad gecko</a> · <a href="https://linglab.org">linglab.org</a></footer>
 </div>
 
@@ -448,6 +614,7 @@ function mountTL(sfx,TLd,PH){
 mountTL('',TL,{blockout:'Blockout',mesh:'Mesh',fit:'Fit to the photos',detail:'Detail strokes',finish:'Finish',expression:'Expressions + head poses'});
 fetch('sam/take2/timeline.json').then(r=>r.json()).then(T2=>mountTL('2',T2,{measure:'Measure the video',blockout:'Blockout',detail:'Detail strokes',finish:'Finish',paint:'Paint from the clip',motion:'Motion from the clip'}));
 fetch('sam/take3/timeline.json').then(r=>r.json()).then(T3=>mountTL('3',T3,{measure:'Measure the video',carve:'Carve from outlines',blockout:'Blockout',detail:'Detail strokes',finish:'Finish',paint:'Paint from all sides',motion:'Motion'}));
+fetch('sam/take4/timeline.json').then(r=>r.json()).then(T4=>mountTL('4',T4,{pose:'Pose every frame',carve:'Carve',surface:'Surface',experiment:'Experiment',detail:'Detail strokes',finish:'Finish',paint:'Texture',motion:'Motion'}));
 
 /* ---------------- photo table ---------------- */
 const pt=document.getElementById('ptable');
@@ -773,6 +940,119 @@ R2.setAnimationLoop(()=>{
   apply(sample(tF),on);
  }
  K2.update();R2.render(S2,C2);
+});
+}
+
+/* ---------------- take 4: the whole clip, textured ---------------- */
+{
+const cv=document.getElementById('c4');
+const R4=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+R4.setPixelRatio(Math.min(devicePixelRatio,2));R4.toneMapping=THREE.AgXToneMapping;R4.toneMappingExposure=1.2;
+const S4=new THREE.Scene();
+const pm4=new THREE.PMREMGenerator(R4);S4.environment=pm4.fromScene(new RoomEnvironment(),0.04).texture;
+const C4=new THREE.PerspectiveCamera(28,1,0.01,20);C4.position.set(-0.2,0.03,0.92);
+const K4=new OrbitControls(C4,cv);K4.target.set(0,-0.04,-0.06);K4.enableDamping=true;K4.minDistance=0.22;K4.maxDistance=2.2;
+const l1=new THREE.DirectionalLight(0xfff0dc,1);l1.position.set(-0.7,0.6,0.9);S4.add(l1);
+const l2=new THREE.DirectionalLight(0xffe8d0,1);l2.position.set(0.5,0.5,-0.9);S4.add(l2);
+function light(p){S4.environmentIntensity=p?1.0:0.55;l1.intensity=p?1.3:2.6;l2.intensity=p?0.6:1.4;}
+light(true);
+function rs4(){const r=cv.parentElement.getBoundingClientRect();R4.setSize(r.width,r.height,false);C4.aspect=r.width/r.height;C4.updateProjectionMatrix();}
+addEventListener('resize',rs4);rs4();
+let vis4=true;new IntersectionObserver(e=>{vis4=e[0].isIntersecting;},{rootMargin:'200px'}).observe(cv);
+const PIV=new THREE.Vector3(0,-0.10,-0.08),AX=new THREE.Vector3(0,-0.10,-0.086),CW=new THREE.Vector3(0,0,-0.08);
+const U={q:{value:new THREE.Vector4(0,0,0,1)},tex:{value:null}};
+const spin=new THREE.Group();spin.position.copy(AX);S4.add(spin);
+const parts={};let MOT=null;const EYEC={},axis=new THREE.Vector3(0,1,0);
+function patch(mat,o,kind){
+ const inv=o.userData.inv;
+ const u={uHeadQ:U.q,uPivot:{value:PIV.clone().applyMatrix4(inv)},uGazeQ:{value:new THREE.Vector4(0,0,0,1)},uEyeC:{value:new THREE.Vector3()},uJaw:{value:new THREE.Vector3()},uRestM:{value:o.userData.rest},uCw:{value:CW},uTex:U.tex};
+ if(kind==='eye')u.uEyeC.value.copy(EYEC[o.name]).applyMatrix4(inv);
+ o.userData.u=u;
+ mat.onBeforeCompile=sh=>{
+  Object.assign(sh.uniforms,u);
+  sh.vertexShader=sh.vertexShader.replace('#include <common>',`#include <common>
+attribute float headW; uniform vec4 uHeadQ; uniform vec3 uPivot; uniform vec4 uGazeQ; uniform vec3 uEyeC; uniform vec3 uJaw; uniform mat4 uRestM; uniform vec3 uCw; varying vec3 vDir;
+vec3 qrot(vec4 q, vec3 v){ return v + 2.0*cross(q.xyz, cross(q.xyz, v) + q.w*v); }`)
+  .replace('#include <defaultnormal_vertex>',`objectNormal = qrot(uGazeQ, objectNormal); objectNormal = normalize(mix(objectNormal, qrot(uHeadQ, objectNormal), headW));
+#include <defaultnormal_vertex>`)
+  .replace('#include <project_vertex>',`vDir = (uRestM * vec4(position,1.0)).xyz - uCw;
+transformed = qrot(uGazeQ, transformed - uEyeC) + uEyeC + uJaw;
+transformed = mix(transformed, qrot(uHeadQ, transformed - uPivot) + uPivot, headW);
+#include <project_vertex>`);
+  sh.fragmentShader=sh.fragmentShader.replace('#include <common>',`#include <common>
+uniform sampler2D uTex; varying vec3 vDir;`).replace('#include <color_fragment>',`#if defined( USE_COLOR_ALPHA )
+ vec3 dd = normalize(vDir); vec2 tuv = vec2(atan(dd.x, dd.z)*0.15915494+0.5, asin(clamp(dd.y,-1.0,1.0))*0.31830989+0.5);
+ diffuseColor.rgb *= mix(vColor.rgb, texture2D(uTex, tuv).rgb, vColor.a);
+#elif defined( USE_COLOR )
+ diffuseColor.rgb *= vColor;
+#endif`);
+ };
+ mat.customProgramCacheKey=()=>'t4'+kind;mat.needsUpdate=true;
+}
+const ld4=new GLTFLoader();ld4.setMeshoptDecoder(MeshoptDecoder);
+Promise.all([new Promise((res,rej)=>ld4.load('sam/take4/sam_take4.glb',res,undefined,rej)),fetch('sam/take4/motion.json').then(r=>r.json()),new Promise((res,rej)=>new THREE.TextureLoader().load('sam/take4/texture.jpg',res,undefined,rej))]).then(([g,mot,tx])=>{
+ tx.colorSpace=THREE.SRGBColorSpace;tx.generateMipmaps=false;tx.minFilter=THREE.LinearFilter;tx.magFilter=THREE.LinearFilter;tx.wrapS=THREE.RepeatWrapping;tx.needsUpdate=true;U.tex.value=tx;
+ MOT=mot;axis.set(mot.axis[0],mot.axis[1],mot.axis[2]).normalize();
+ const ex=g.parser.json.extras||{};EYEC.eyeR=new THREE.Vector3(...ex.eyeR_c);EYEC.eyeL=new THREE.Vector3(...ex.eyeL_c);
+ g.scene.updateMatrixWorld(true);
+ g.scene.traverse(o=>{
+  if(!o.isMesh)return;
+  if(o.name.startsWith('eye'))o.name=o.name.slice(0,4);
+  const kind=o.name.startsWith('eye')?'eye':(o.name==='teethL'?'jaw':'head');
+  o.userData.rest=o.matrixWorld.clone();o.userData.inv=o.matrixWorld.clone().invert();
+  const pos=o.geometry.attributes.position,n=pos.count,w=new Float32Array(n),v=new THREE.Vector3();
+  for(let i=0;i<n;i++){v.fromBufferAttribute(pos,i).applyMatrix4(o.userData.rest);const x=Math.min(1,Math.max(0,(v.y+0.19)/0.07));w[i]=x*x*(3-2*x);}
+  o.geometry.setAttribute('headW',new THREE.BufferAttribute(w,1));
+  const m=o.material.clone();o.material=m;m.metalness=0;
+  const ca=o.geometry.attributes._clay;
+  if(o.geometry.attributes.color&&ca){o.userData.paint=o.geometry.attributes.color;const f=new Float32Array(n*4);for(let i=0;i<n;i++){f[i*4]=ca.getX(i)*0.5;f[i*4+1]=ca.getY(i)*0.5;f[i*4+2]=ca.getZ(i)*0.5;f[i*4+3]=0;}o.userData.clay=new THREE.BufferAttribute(f,4);}
+  patch(m,o,kind);o.frustumCulled=false;parts[o.name]=o;
+ });
+ g.scene.position.copy(AX).multiplyScalar(-1);spin.add(g.scene);
+ const l=document.getElementById('load4');l.style.opacity=0;setTimeout(()=>l.remove(),600);
+ setF(MOT.front);rest();say('At rest','drag to orbit · scroll to zoom');
+},e=>{document.getElementById('load4').textContent='could not load take 4: '+e.message;});
+let tF=0,playing=false,speed=1,useSpin=true,useNeck=true,useGaze=true,atRest=true,on=0;
+const sc=document.getElementById('scrub4'),tc=document.getElementById('tcur4'),sayE=document.getElementById('say4'),pb=document.getElementById('play4');
+function say(a,b){sayE.innerHTML=`${a}<small>${b}</small>`;}
+const how=f=>MOT.tracked[Math.round(f)]?'tracked from his face':'solved from the back of his head';
+const qa=new THREE.Quaternion(),qb=new THREE.Quaternion(),qx=new THREE.Quaternion(),qy=new THREE.Quaternion(),ID=new THREE.Quaternion(),YA=new THREE.Vector3(0,1,0),XA=new THREE.Vector3(1,0,0);
+function sample(f){
+ const n=MOT.frames,i0=Math.max(0,Math.min(n-1,Math.floor(f))),i1=Math.min(n-1,i0+1),a=f-i0,L=(p,q)=>p+(q-p)*a;
+ qa.fromArray(MOT.swing[i0]);qb.fromArray(MOT.swing[i1]);
+ return {coef:MOT.coef[i0].map((x,k)=>L(x,MOT.coef[i1][k])),q:qa.clone().slerp(qb,a),yaw:L(MOT.yaw[i0],MOT.yaw[i1]),
+  g:[0,1].map(e=>[0,1].map(k=>L(MOT.gaze[i0][e][k],MOT.gaze[i1][e][k]))),jaw:[0,1,2].map(k=>L(MOT.jaw[i0][k],MOT.jaw[i1][k]))};
+}
+function apply(st,o){
+ const h=parts.head;if(!h)return;
+ const inf=h.morphTargetInfluences;for(let k=0;k<MOT.K;k++)inf[k]=st.coef[k]*o;
+ const q=useNeck?ID.clone().slerp(st.q,o):ID;U.q.value.set(q.x,q.y,q.z,q.w);
+ spin.quaternion.setFromAxisAngle(axis,useSpin?THREE.MathUtils.degToRad(st.yaw)*o:0);
+ ['eyeR','eyeL'].forEach((e,i)=>{const ob=parts[e];if(!ob)return;const gg=useGaze?st.g[i]:[0,0];qy.setFromAxisAngle(YA,THREE.MathUtils.degToRad(gg[0]*o));qx.setFromAxisAngle(XA,THREE.MathUtils.degToRad(-gg[1]*o));const gq=qx.clone().multiply(qy);ob.userData.u.uGazeQ.value.set(gq.x,gq.y,gq.z,gq.w);});
+ const tl=parts.teethL;if(tl){const v=new THREE.Vector4(st.jaw[0]*o,st.jaw[1]*o,st.jaw[2]*o,0).applyMatrix4(tl.userData.inv);tl.userData.u.uJaw.value.set(v.x,v.y,v.z);}
+}
+function setF(f){tF=f;atRest=false;sc.value=Math.round(f);tc.textContent=(f/30).toFixed(1)+' s';}
+function stop(){playing=false;pb.setAttribute('aria-pressed','false');pb.textContent='Play the clip';}
+function rest(){atRest=true;stop();}
+pb.onclick=()=>{if(!MOT)return;playing=!playing;pb.setAttribute('aria-pressed',playing);pb.textContent=playing?'Pause':'Play the clip';if(playing){atRest=false;if(tF>=MOT.frames-1)tF=0;}};
+document.getElementById('rest4').onclick=()=>{rest();say('At rest','the resting face, facing front');};
+sc.oninput=()=>{if(!MOT)return;stop();setF(+sc.value);say((tF/30).toFixed(1)+' s',how(tF));};
+const M4=[['Front',1363,'calm, facing the camera'],['Turning away',90,'the first chair turn begins'],['From behind',213,'the far point of the first turn'],['Other side',480,'second turn, the other way'],['Bow',620,'crown to the camera'],['Chin up',675,'looking at the ceiling'],['Yawn',855,'the widest the jaw opens'],['Smile',936,'the broadest smile'],['Brows up',1030,'inner brows raised']];
+const ch=document.getElementById('chips4');
+M4.forEach(([nm,f,note])=>{const b=document.createElement('button');b.textContent=nm;b.onclick=()=>{if(!MOT)return;stop();setF(f);say(nm,note+' · '+(f/30).toFixed(1)+' s · '+how(f));};ch.appendChild(b);});
+function tog(id,fn){const b=document.getElementById(id);b.onclick=()=>{const v=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',v);fn(v);};}
+tog('spinOn4',v=>useSpin=v);tog('headOn4',v=>useNeck=v);tog('gazeOn4',v=>useGaze=v);tog('slowOn4',v=>speed=v?0.5:1);
+function setPaint(p){document.getElementById('paintOn4').setAttribute('aria-pressed',p);document.getElementById('clayOn4').setAttribute('aria-pressed',!p);light(p);
+ Object.values(parts).forEach(o=>{if(o.userData.paint)o.geometry.setAttribute('color',p?o.userData.paint:o.userData.clay);});}
+document.getElementById('paintOn4').onclick=()=>setPaint(true);document.getElementById('clayOn4').onclick=()=>setPaint(false);
+const clk=new THREE.Clock();
+R4.setAnimationLoop(()=>{
+ const dt=Math.min(0.05,clk.getDelta());if(!vis4)return;
+ if(MOT){
+  if(playing){tF+=dt*30*speed;if(tF>=MOT.frames-1){tF=MOT.frames-1;stop();pb.textContent='Play again';}sc.value=Math.round(tF);tc.textContent=(tF/30).toFixed(1)+' s';say((tF/30).toFixed(1)+' s',how(tF));}
+  on+=((atRest?0:1)-on)*(1-Math.exp(-dt*8));apply(sample(tF),on);
+ }
+ K4.update();R4.render(S4,C4);
 });
 }
 </script>
