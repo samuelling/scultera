@@ -992,7 +992,7 @@ uniform sampler2D uTex; varying vec3 vDir;`).replace('#include <color_fragment>'
  mat.customProgramCacheKey=()=>'t4'+kind;mat.needsUpdate=true;
 }
 const ld4=new GLTFLoader();ld4.setMeshoptDecoder(MeshoptDecoder);
-Promise.all([new Promise((res,rej)=>ld4.load('sam/take4/sam_take4.glb?v=2',res,undefined,rej)),fetch('sam/take4/motion.json?v=2').then(r=>r.json()),new Promise((res,rej)=>new THREE.TextureLoader().load('sam/take4/texture.jpg?v=2',res,undefined,rej))]).then(([g,mot,tx])=>{
+Promise.all([new Promise((res,rej)=>ld4.load('sam/take4/sam_take4.glb?v=3',res,undefined,rej)),fetch('sam/take4/motion.json?v=2').then(r=>r.json()),new Promise((res,rej)=>new THREE.TextureLoader().load('sam/take4/texture.jpg?v=2',res,undefined,rej))]).then(([g,mot,tx])=>{
  tx.colorSpace=THREE.SRGBColorSpace;tx.generateMipmaps=false;tx.minFilter=THREE.LinearFilter;tx.magFilter=THREE.LinearFilter;tx.wrapS=THREE.RepeatWrapping;tx.needsUpdate=true;U.tex.value=tx;
  MOT=mot;axis.set(mot.axis[0],mot.axis[1],mot.axis[2]).normalize();
  const ex=g.parser.json.extras||{};EYEC.eyeR=new THREE.Vector3(...ex.eyeR_c);EYEC.eyeL=new THREE.Vector3(...ex.eyeL_c);

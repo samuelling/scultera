@@ -7,7 +7,7 @@ V=fin['v'].astype(np.float64); F=fin['f']; mat=fin['mat']
 tex=(cv2.imread('texture.jpg')[:,:,::-1]/255.0)**2.2; TH,TW=tex.shape[:2]; rr,az,el=sdf4.angles(V)
 P=np.stack([ndi.map_coordinates(tex[...,c],[(90-el)/180*TH-0.5,(az+180)/360*TW-0.5],order=1,mode='nearest') for c in range(3)],1)
 sw=fin['shirt_w'][:,None]; a=(1-fin['shirt_w']); a[(mat==3)|(mat==4)]=0
-P=P*(1-sw)+np.array([0.016,0.018,0.026])*sw; P[mat==3]=[0.06,0.015,0.012]; P[mat==4]=[0.05,0.03,0.025]
+P=P*(1-sw)+np.array([0.016,0.018,0.026])*sw; P[mat==3]=[0.018,0.006,0.005]; P[mat==4]=[0.05,0.03,0.025]
 CL=np.array([(0.50,0.37,0.29),(0.20,0.155,0.13),(0.07,0.075,0.09),(0.16,0.05,0.05),(0.22,0.15,0.12)])[mat]
 hw=fin['hair_w'][:,None]; CL=np.where((mat<=1)[:,None],np.array([0.50,0.37,0.29])*(1-hw)+np.array([0.20,0.155,0.13])*hw,CL)
 def vnorm(V,F):
